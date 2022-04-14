@@ -1,0 +1,291 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Services;
+
+import Model.User;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import utils.MyDb;
+
+/**
+ *
+ * @author HP
+ */
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+import Model.Personne;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import utils.MyDb;
+import Model.User;
+import Model.Emplois;
+import java.sql.PreparedStatement;
+
+/**
+ *
+ * @author HP
+ */
+
+public class ServiceEmplois  implements IService<Emplois>{
+private Connection cnx = MyDb.getInstance().getCnx() ;
+   
+   @Override
+    public void ajouter(Emplois t) {
+
+          User p = new User();
+    try {
+       // System.out.println(t.getCin());
+         String querry1 ="SELECT * FROM `User` where cin = "+t.getCin();
+        Statement stm1 = cnx.createStatement();
+            ResultSet rs= stm1.executeQuery(querry1);
+         while(rs.next()){
+          
+                 p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+                      p.setCin(rs.getInt("cin"));
+                  //   System.out.println(p.getId());
+         }
+        
+        // System.out.println(p.getNom());
+        
+        
+        
+        
+        String querry= "INSERT INTO Emplois(`nom`, `prenom`,`cin`,`ddebut`,`dfin`,`user_id`) VALUES ('"+p.getNom()+"','"+p.getPrenom()+"','"+t.getCin()+"','"+t.getDdebut()+"','"+t.getDfin()+"','"+p.getId()+"')";
+        Statement stm = cnx.createStatement();
+    
+    stm.executeUpdate(querry);
+    
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    
+    }
+        
+        
+    }
+
+    @Override
+    public List<Emplois> afficher() {
+     List<Emplois> Emploiss = new ArrayList();
+        try {
+       
+        String querry ="SELECT * FROM `Emplois`";
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(querry);
+        while (rs.next()){
+            Emplois p = new Emplois();
+                 p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setDdebut(rs.getString("ddebut"));
+            p.setDfin(rs.getString("dfin"));
+                      p.setCin(rs.getInt("cin"));
+                       Emploiss.add(p);
+        }
+        
+        
+        
+        return Emploiss;
+    } catch (SQLException ex) {
+        }
+    return Emploiss;
+    }
+
+    @Override
+    public void modifier(Emplois t) {
+         try {
+            String req = "update Emplois set ddebut= ?, dfin =? where id= ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, t.getDdebut());
+            ps.setString(2, t.getDfin());
+            ps.setInt(3, t.getId());
+            ps.executeUpdate();
+            System.out.println("Emplois modifiée");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       }
+ @Override
+    public List<Emplois> afficherTrier(String s,String a) {
+     List<Emplois> Emploiss = new ArrayList();
+        try {
+       
+        String querry ="SELECT * FROM `Emplois` order by "+s+" "+a;
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(querry);
+        while (rs.next()){
+            Emplois p = new Emplois();
+            
+             p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setDdebut(rs.getString("ddebut"));
+            p.setDfin(rs.getString("dfin"));
+                      p.setCin(rs.getInt("cin"));
+            Emploiss.add(p);
+        }
+        
+        
+        
+        return Emploiss;
+    } catch (SQLException ex) {
+        }
+    return Emploiss;
+    }
+    @Override
+    public void supprimer(Emplois t) {
+              //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+ /*try {
+            String req = "delete From User  where id = ?" ;
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, t.getNom());
+            ps.setString(2, t.getPrenom());
+            ps.setInt(3, t.getPassword());
+            ps.setInt(4, t.getId());
+            ps.execute();
+            System.out.println("User deleted");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         }*/
+ String req = "delete From Emplois  where id = ?" ;
+     try(PreparedStatement preparedStatement = (PreparedStatement) cnx.prepareStatement(req)) {
+            preparedStatement.setInt(1, t.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());;
+        }}
+     @Override
+    public List<Emplois> recherche(String s) {
+     List<Emplois> Emploiss = new ArrayList();
+        try {
+       
+        String querry ="SELECT * FROM `Emplois` where nom like '%"+s+"%' or prenom  like '%"+s+"%' or cin   like '%"+s+"%'  or dfin   like '%"+s+"%' or ddebut   like '%"+s+"%'";
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(querry);
+        while (rs.next()){
+            Emplois p = new Emplois();
+            
+            p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setDdebut(rs.getString("ddebut"));
+            p.setDfin(rs.getString("dfin"));
+                      p.setCin(rs.getInt("cin"));
+            Emploiss.add(p);
+        }
+        
+        
+        
+        return Emploiss;
+    } catch (SQLException ex) {
+        }
+    return Emploiss;
+    }
+    @Override
+    public List<Emplois> filtre(String s) {
+     List<Emplois> Emploiss = new ArrayList();
+        try {
+       
+        String querry ="SELECT * FROM `User` where role like '%"+s+"%'";
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(querry);
+        while (rs.next()){
+            Emplois p = new Emplois();
+            
+          
+            Emploiss.add(p);
+        }
+        
+        
+        
+        return Emploiss;
+    } catch (SQLException ex) {
+        }
+    return Emploiss;
+    }
+    @Override
+    public void rechstream(int x) {
+        List<Emplois> emploiss = new ArrayList();
+      boolean test ;
+         try {
+       
+        String query ="SELECT * FROM Emplois";
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(query);
+        while (rs.next()){
+            Emplois p = new Emplois();
+           p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setDdebut(rs.getString("ddebut"));
+            p.setDfin(rs.getString("dfin"));
+                      p.setCin(rs.getInt("cin"));
+            
+            emploiss.add(p);
+        }
+       
+   test =emploiss.stream().anyMatch((p -> p.getId()==x ));
+  
+   if (test ==true ){ 
+     for (int i = 0; i < emploiss.size(); i++) {
+           if (emploiss.get(i).getId()== x) {
+                 System.out.println( emploiss.get(i));
+           
+           } }
+   
+   }
+   else
+   {
+       System.out.println( "aucune emplois");
+   }
+        } catch (SQLException ex){} ;
+       
+    }
+    public void tristream() {
+        List<Emplois> emploiss = new ArrayList();
+         try {
+       
+        String query ="SELECT * FROM Emplois";
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(query);
+        while (rs.next()){
+            Emplois p = new Emplois();
+            
+   p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setDdebut(rs.getString("ddebut"));
+            p.setDfin(rs.getString("dfin"));
+                      p.setCin(rs.getInt("cin"));
+            
+            emploiss.add(p);
+        }
+       
+   emploiss.stream().sorted((a,b) -> a.getNom().compareTo(b.getNom())).forEach(System.out::println);;
+    } catch (SQLException ex) {} 
+    }
+}
