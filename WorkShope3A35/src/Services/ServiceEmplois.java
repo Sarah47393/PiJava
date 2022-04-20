@@ -41,6 +41,7 @@ import utils.MyDb;
 import Model.User;
 import Model.Emplois;
 import java.sql.PreparedStatement;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -228,64 +229,33 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     return Emploiss;
     }
     @Override
-    public void rechstream(int x) {
-        List<Emplois> emploiss = new ArrayList();
-      boolean test ;
-         try {
-       
-        String query ="SELECT * FROM Emplois";
-        Statement stm = cnx.createStatement();
-            ResultSet rs= stm.executeQuery(query);
-        while (rs.next()){
-            Emplois p = new Emplois();
-           p.setId(rs.getInt(1));
-            p.setNom(rs.getString("nom"));
-            p.setPrenom(rs.getString("prenom"));
-            p.setDdebut(rs.getString("ddebut"));
-            p.setDfin(rs.getString("dfin"));
-                      p.setCin(rs.getInt("cin"));
-            
-            emploiss.add(p);
-        }
-       
-   test =emploiss.stream().anyMatch((p -> p.getId()==x ));
-  
-   if (test ==true ){ 
-     for (int i = 0; i < emploiss.size(); i++) {
-           if (emploiss.get(i).getId()== x) {
-                 System.out.println( emploiss.get(i));
-           
-           } }
    
-   }
-   else
-   {
-       System.out.println( "aucune emplois");
-   }
-        } catch (SQLException ex){} ;
+    public List<Emplois> rechstream(Emplois x) {
        
+       
+      return afficher().stream().filter(p->(String.valueOf(p.getCin()).contains(String.valueOf(x.getCin())))||(p.getNom().contains(x.getNom()))||(p.getDfin().contains(x.getDfin()))||(p.getPrenom().contains(x.getPrenom()))||(p.getDdebut().contains(x.getDdebut()))).collect(Collectors.toList());
+
+  
+ 
     }
-    public void tristream() {
-        List<Emplois> emploiss = new ArrayList();
-         try {
-       
-        String query ="SELECT * FROM Emplois";
-        Statement stm = cnx.createStatement();
-            ResultSet rs= stm.executeQuery(query);
-        while (rs.next()){
-            Emplois p = new Emplois();
-            
-   p.setId(rs.getInt(1));
-            p.setNom(rs.getString("nom"));
-            p.setPrenom(rs.getString("prenom"));
-            p.setDdebut(rs.getString("ddebut"));
-            p.setDfin(rs.getString("dfin"));
-                      p.setCin(rs.getInt("cin"));
-            
-            emploiss.add(p);
-        }
-       
-   emploiss.stream().sorted((a,b) -> a.getNom().compareTo(b.getNom())).forEach(System.out::println);;
-    } catch (SQLException ex) {} 
+  public List<Emplois> tristreamnom() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getNom().compareTo(p2.getNom())).collect(Collectors.toList());
+
+    }
+    public List<Emplois> tristreamprenom() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getPrenom().compareTo(p2.getPrenom())).collect(Collectors.toList());
+
+    }
+     public List<Emplois> tristreamdated() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getDdebut().compareTo(p2.getDdebut())).collect(Collectors.toList());
+
+    }
+      public List<Emplois> tristreamdatef() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getDfin().compareTo(p2.getDfin())).collect(Collectors.toList());
+
     }
 }

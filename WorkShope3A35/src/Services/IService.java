@@ -20,7 +20,7 @@ public interface IService <T> {
     public List<T> afficherTrier(String s,String a);
     public List<T> recherche(String s);
     public List<T> filtre(String s);
-    public void rechstream(int s);
+    public List<T> rechstream(T t);
     
     /*
     ....

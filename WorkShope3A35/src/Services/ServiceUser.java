@@ -9,7 +9,7 @@ import Model.Personne;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.Arrays;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,10 @@ import java.util.logging.Logger;
 import utils.MyDb;
 import Model.User;
 import java.sql.PreparedStatement;
+import java.util.stream.Collectors;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -204,68 +208,70 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     return Users;
     }
   @Override
-    public void rechstream(int x) {
-        List<User> Users = new ArrayList();
-      boolean test ;
-         try {
-       
-        String query ="SELECT * FROM visite";
-        Statement stm = cnx.createStatement();
-            ResultSet rs= stm.executeQuery(query);
-        while (rs.next()){
-            User p = new User();
-             p.setId(rs.getInt(1));
-            p.setNom(rs.getString("nom"));
-            p.setPrenom(rs.getString(3));
-            p.setPassword(rs.getInt("password"));
-            p.setCin(rs.getInt("cin"));
-            p.setRole(rs.getString("role"));
-            p.setAccess(rs.getString("access"));
-            p.setImage(rs.getString("image"));
-            p.setDatenaissance(rs.getString("datenaissance"));
-            Users.add(p);
-        }
-       
-   test =Users.stream().anyMatch((c -> c.getId()==x ));
-   if (test ==true ){
-     for (int i = 0; i < Users.size(); i++) {
-           if (Users.get(i).getId()== x) {
-                 System.out.println( Users.get(i));
-           
-           } }
-   
-   }
-   else
-   {
-       System.out.println( "aucun user");
-   }
-        } catch (SQLException ex){} ;
+    public List<User> rechstream(User x) {
+
+     
+     return afficher().stream().filter(p->(String.valueOf(p.getCin()).contains(String.valueOf(x.getCin())))||(p.getNom().contains(x.getNom()))||(p.getDatenaissance().contains(x.getDatenaissance()))||(p.getPrenom().contains(x.getPrenom()))||(p.getRole().contains(x.getRole()))||(p.getAccess().contains(x.getAccess()))).collect(Collectors.toList());
+  
+//return afficher().stream().filter(p->(String.valueOf(p.getCin()).contains(String.valueOf(x.getCin())))).collect(Collectors.toList());
+  
        
     }
-    public void tristream() {
-        List<User> Users = new ArrayList();
-         try {
+    
+   public List<User> tristreamnom() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getNom().compareTo(p2.getNom())).collect(Collectors.toList());
+
+    }
+    public List<User> tristreamprenom() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getPrenom().compareTo(p2.getPrenom())).collect(Collectors.toList());
+
+    }
+     public List<User> tristreamdate() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getDatenaissance().compareTo(p2.getDatenaissance())).collect(Collectors.toList());
+
+    }
+  public List<User> affichercombo() {
+     List<User> Users = new ArrayList();
+        try {
        
-        String query ="SELECT * FROM Emplois";
+        String querry ="SELECT id,nom,prenom,cin FROM `User`";
         Statement stm = cnx.createStatement();
-            ResultSet rs= stm.executeQuery(query);
+            ResultSet rs= stm.executeQuery(querry);
         while (rs.next()){
             User p = new User();
             
-       p.setId(rs.getInt(1));
+            p.setId(rs.getInt(1));
             p.setNom(rs.getString("nom"));
-            p.setPrenom(rs.getString(3));
-            p.setPassword(rs.getInt("password"));
+            p.setPrenom(rs.getString("prenom"));
             p.setCin(rs.getInt("cin"));
-            p.setRole(rs.getString("role"));
-            p.setAccess(rs.getString("access"));
-            p.setImage(rs.getString("image"));
-            p.setDatenaissance(rs.getString("datenaissance"));
+        
             Users.add(p);
+        }   return Users;
+    } catch (SQLException ex) {
         }
+    return Users;}
+         public List<String> affichercombo1() {
+     List<String> Users = new ArrayList();
+        try {
        
-   Users.stream().sorted((a,b) -> a.getNom().compareTo(b.getNom())).forEach(System.out::println);;
-    } catch (SQLException ex) {} 
-    }
+        String querry ="SELECT id,nom,prenom,cin FROM `User`";
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(querry);
+        while (rs.next()){
+           // User p = new User();
+            
+          /*  p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setCin(rs.getInt("cin"));*/
+        
+            Users.add(rs.getString("nom"));
+        }   return Users;
+    } catch (SQLException ex) {
+        }
+    return Users;}
 }
 
