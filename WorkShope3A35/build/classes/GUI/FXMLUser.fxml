@@ -52,5 +52,6 @@
       <Label fx:id="LBshow" layoutX="563.0" layoutY="522.0" text="Label" />
       <Button id="trinom" fx:id="nomtri" layoutX="1117.0" layoutY="458.0" mnemonicParsing="false" onAction="#tri" text="Button" />
       <ComboBox id="trinom" fx:id="trinom" layoutX="1032.0" layoutY="495.0" prefWidth="150.0" />
+      <Button fx:id="arch" layoutX="302.0" layoutY="470.0" mnemonicParsing="false" onAction="#archPersonnes1" text="archiver" />
    </children>
 </AnchorPane>

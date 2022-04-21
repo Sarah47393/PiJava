@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -54,8 +55,6 @@ private TableColumn<Emplois, String> dfin;
     @FXML
     private TextField recheerche;
     @FXML
-    private TextField tfid;
-    @FXML
     private Button ajouter;
     @FXML
     private Button modifier;
@@ -75,6 +74,8 @@ private TableColumn<Emplois, String> dfin;
     private TextField fin;
     @FXML
     private ComboBox<User> cinuser;
+    @FXML
+    private Button archiver;
 
     /**
      * Initializes the controller class.
@@ -208,8 +209,14 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
         private void ajouteremplois(ActionEvent event) {
        
              
-               
-   
+              /*  if ((LocalDate.of(debut.getText())>fin.getText()))
+                    {
+                         Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("vous devez etre age au moins de 18 ans ");
+                         alert.setContentText("Veuillez remplir tous les champs");
+                         alert.show();
+                    } */
+             
         ServiceEmplois sp = new ServiceEmplois();
    //  int cinn2 = Integer.parseInt( cinuser.getSelectionModel().getSelectedItem().getCin());
      int cin2    =  cinuser.getSelectionModel().getSelectedItem().getCin();
@@ -249,6 +256,21 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
        person.setDfin(fin.getText());
        // System.out.println(person.getDfin());
        sp.modifier(person);
+        ObservableList<Emplois> list = FXCollections.observableArrayList(sp.afficher());
+
+    tableemplois.setItems(list);
+  //LBshow.setText("aa");
+    }
+     @FXML
+    private void archPersonnes1(ActionEvent event) {
+     ServiceEmplois sp = new ServiceEmplois();
+               
+  Emplois person = tableemplois.getSelectionModel().getSelectedItem();
+  // int idd = Integer.parseInt(idddd.getText());
+//person.setId(idd);
+      
+       // System.out.println(person.getDfin());
+       sp.arch(person);
         ObservableList<Emplois> list = FXCollections.observableArrayList(sp.afficher());
 
     tableemplois.setItems(list);

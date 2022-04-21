@@ -52,7 +52,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
      List<User> Users = new ArrayList();
         try {
        
-        String querry ="SELECT * FROM `User`";
+        String querry ="SELECT * FROM `User` where arch is NULL";
         Statement stm = cnx.createStatement();
             ResultSet rs= stm.executeQuery(querry);
         while (rs.next()){
@@ -87,6 +87,19 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
             ps.setString(2, t.getPrenom());
             ps.setInt(3, t.getPassword());
             ps.setInt(4, t.getId());
+            ps.executeUpdate();
+            System.out.println("User modifiée");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       }
+     @Override
+    public void arch(User t) {
+         try {
+            String req = "update User set arch= ? where id= ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+             ps.setString(1,"1");
+            ps.setInt(2, t.getId());
             ps.executeUpdate();
             System.out.println("User modifiée");
         } catch (SQLException ex) {
@@ -273,5 +286,6 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     } catch (SQLException ex) {
         }
     return Users;}
+         
 }
 

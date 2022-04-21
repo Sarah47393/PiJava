@@ -92,7 +92,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
      List<Emplois> Emploiss = new ArrayList();
         try {
        
-        String querry ="SELECT * FROM `Emplois`";
+        String querry ="SELECT * FROM `Emplois` where arch is NULL ";
         Statement stm = cnx.createStatement();
             ResultSet rs= stm.executeQuery(querry);
         while (rs.next()){
@@ -122,6 +122,20 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
             ps.setString(1, t.getDdebut());
             ps.setString(2, t.getDfin());
             ps.setInt(3, t.getId());
+            ps.executeUpdate();
+            System.out.println("Emplois modifiée");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       }
+     @Override
+    public void arch(Emplois t) {
+         try {
+            String req = "update Emplois set arch= ? where id= ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1,"1");
+           
+            ps.setInt(2, t.getId());
             ps.executeUpdate();
             System.out.println("Emplois modifiée");
         } catch (SQLException ex) {

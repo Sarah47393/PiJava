@@ -13,7 +13,15 @@ import java.util.Date;
  */
 public class User {
      private int id,password,cin;
-    private String nom,prenom,datenaissance,role,access,image;
+    private String nom,prenom,datenaissance,role,access,image,arch;
+
+    public String getArch() {
+        return arch;
+    }
+
+    public void setArch(String arch) {
+        this.arch = arch;
+    }
 
     public User() {
     }

@@ -32,5 +32,6 @@
       <TextField fx:id="debut" layoutX="120.0" layoutY="173.0" />
       <TextField fx:id="fin" layoutX="119.0" layoutY="227.0" />
       <ComboBox fx:id="cinuser" layoutX="119.0" layoutY="129.0" prefWidth="150.0" />
+      <Button fx:id="archiver" layoutX="213.0" layoutY="389.0" mnemonicParsing="false" onAction="#archPersonnes1" text="archiver" />
    </children>
 </AnchorPane>

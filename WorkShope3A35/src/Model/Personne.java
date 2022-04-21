@@ -12,7 +12,15 @@ package Model;
  */
 public class Personne {
  private int id ;
- private String nom ,prenom ;
+ private String nom ,prenom,arch ;
+
+    public void setArch(String arch) {
+        this.arch = arch;
+    }
+
+    public String getArch() {
+        return arch;
+    }
 
     public Personne() {
     }

@@ -20,11 +20,14 @@ import Model.User;
 import Services.ServiceUser;
 import java.io.FileInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Arrays;
 import javafx.scene.control.ComboBox;
 import java.net.URL;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,10 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TablePosition;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javafx.scene.control.Alert;
 
 import javafx.util.converter.IntegerStringConverter;
 import javax.swing.JFileChooser;
@@ -113,8 +120,6 @@ private FileInputStream fis;
 private File file;
 
 @FXML
-private CheckBox triprenom;
-@FXML
 private Button ajout;
 @FXML
 private Button supp;
@@ -122,6 +127,8 @@ private Button supp;
 private Button img;
 @FXML
 private Button nomtri;
+    @FXML
+    private Button arch;
 
     /**
      * Initializes the controller class.
@@ -263,15 +270,39 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
        
              
                
-   
-        ServiceUser sp = new ServiceUser();
+     if ((tfnom.getText().isEmpty())||(tfimage.getText().isEmpty()) ||(tfpassword.getText().isEmpty()) ||(tfprenom.getText().isEmpty()) || (tfcin.getText().isEmpty())|| (tfrole.getText().isEmpty()) ||(tfaccess.getText().isEmpty()))
+                    {
+                         Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("Champ(s) vide(s)");
+                         alert.setContentText("Veuillez remplir tous les champs");
+                         alert.show();
+                    }
+     else               
+     if ((tfcin.getText().length()!=8))
+                    {
+                         Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("cin doit etre de taille 8");
+                         alert.setContentText("Veuillez remplir tous les champs");
+                         alert.show();
+                    }
+     
+      else               
+     if ((tfdate.getValue().isAfter(LocalDate.of(2008, 01, 01))))
+                    {
+                         Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("vous devez etre age au moins de 18 ans ");
+                         alert.setContentText("Veuillez remplir tous les champs");
+                         alert.show();
+                    }
+     else{  ServiceUser sp = new ServiceUser();
        int pass = Integer.parseInt(tfpassword.getText());
             int cinn = Integer.parseInt(tfcin.getText());
           
         sp.ajouter(new User(tfnom.getText() ,tfprenom.getText(),pass,cinn,tfrole.getText(),tfaccess.getText(),tfimage.getText(),tfdate.getValue().toString() ));
           ObservableList<User> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableuser.setItems(list);
+    tableuser.setItems(list);}
+  
     }
 
     @FXML
@@ -339,15 +370,49 @@ sp.supprimer(person);
     }
        @FXML
     private void image(ActionEvent event) {
+         String url1 = "/xampp/htdocs/projetpi/public/Uploads/image/";
           JFileChooser chooser=new JFileChooser(); 
                chooser.showOpenDialog(null);
                File f=chooser.getSelectedFile();
                String fileName=f.getAbsolutePath();
-               tfimage.setText(fileName);
+                 String fileName1=f.getName();
+                // try{ String fileName2=f.getCanonicalPath();
+               tfimage.setText(fileName1);/*}
+               
+                 catch(Exception e){}*/
                //   Image image = new Image(tfimage.getText());
                  //  Image.setImage(image);
                   // File file = JFileChooser.showSaveDialog(primaryStage);
                //    File file2 = chooser.showSaveDialog();
+             
+
+   /* try {
+
+        f.move(Paths.get(fileName), Paths.get(url1), StandardCopyOption.REPLACE_EXISTING);
+
+    } catch (Exception e) {
+
+     
+        e.printStackTrace();
+    }*/
+       System.out.println(f.getAbsolutePath());
+    /* f = new File(fileName);
+    f.renameTo(new File(url1));*/
+    //f.move(fileName, url1, StandardCopyOption.REPLACE_EXISTING);
+   /*try{ f.createNewFile();}
+   catch(Exception e){}*/
+  /*  Path source = Paths.get(fileName);
+  Path target = Paths.get(url1);
+
+  try{
+
+    Files.move(source, target);
+
+  } catch (IOException e) {
+    e.printStackTrace();
+  }*/
+    System.out.println(f.getAbsolutePath());
+
     }
       @FXML
       private void tri(ActionEvent event) {
@@ -359,5 +424,20 @@ sp.supprimer(person);
       //    ObservableList<User> list = FXCollections.observableArrayList(sp.tristream(u));
 
     //tableuser.setItems(list);
+    }
+          @FXML
+    private void archPersonnes1(ActionEvent event) {
+     ServiceUser sp = new ServiceUser();
+               
+  User person = tableuser.getSelectionModel().getSelectedItem();
+  // int idd = Integer.parseInt(idddd.getText());
+//person.setId(idd);
+      
+       // System.out.println(person.getDfin());
+       sp.arch(person);
+        ObservableList<User> list = FXCollections.observableArrayList(sp.afficher());
+
+    tableuser.setItems(list);
+  //LBshow.setText("aa");
     }
 }
