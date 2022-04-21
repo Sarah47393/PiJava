@@ -40,13 +40,26 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
         
         
     }
+@Override
+    public void archiver(Collaborateur t) {
+         try {
+            String req = "update collaborateur set archiver= ? where id= ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1,"1");
+            ps.setInt(2, t.getId());
+            ps.executeUpdate();
+            System.out.println("Collaborateur modifié");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       }
 
     @Override
     public List<Collaborateur> afficher() {
      List<Collaborateur> collaborateurs = new ArrayList();
         try {
        
-        String querry ="SELECT * FROM `collaborateur`";
+        String querry ="SELECT * FROM `collaborateur` where archiver is NULL";
         Statement stm = cnx.createStatement();
             ResultSet rs= stm.executeQuery(querry);
             

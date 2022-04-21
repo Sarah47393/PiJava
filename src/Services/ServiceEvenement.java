@@ -28,7 +28,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     @Override
     public void ajouter(Evenement t) {
     try {
-        String querry= "INSERT INTO `evenement`(`collaborateur1_id`, `nom_evenement`, `description`, `nombre_de_participants`, `qr_code`, `billet`, `date_de_evenement`, `longitude`, `latitude`)  VALUES (''"+t.getCollaborateur1()+"',"+t.getNomEvenement()+"','"+t.getDescription()+"','"+t.getNombreDeParticipants()+"','"+t.getQrCode()+"','"+t.getBillet()+"''"+t.getDateDeEvenement()+"''"+t.getLongitude()+"''"+t.getLatitude()+"')";
+        String querry= "INSERT INTO `evenement`( `collaborateur1_id`, `nom_evenement`, `description`, `nombre_de_participants`, `qr_code`, `billet`, `date_de_evenement`, `longitude`, `latitude`) VALUES ('"+t.getCollaborateur1()+"','"+t.getNomEvenement()+"','"+t.getDescription()+"','"+t.getNombreDeParticipants()+"','"+t.getQrCode()+"','"+t.getBillet()+"','"+t.getDateDeEvenement()+"','"+t.getLongitude()+"','"+t.getLatitude()+"')";
         Statement stm = cnx.createStatement();
     
     stm.executeUpdate(querry);
@@ -46,7 +46,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
      List<Evenement> evenements = new ArrayList();
         try {
        
-        String querry ="SELECT * FROM `evenement`";
+        String querry ="SELECT * FROM `evenement` where archiver is null";
         Statement stm = cnx.createStatement();
             ResultSet rs= stm.executeQuery(querry);
             
@@ -75,18 +75,19 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     @Override
    public void modifier(Evenement t) {
         try {
-            String requete =  "UPDATE `evenement` SET `id`=?,`collaborateur1_id`=?,`nom_evenement`=?,`description`='?',`nombre_de_participants`='?',`qr_code`='?',`billet`=?,`date_de_evenement`=?,`longitude`=?,`latitude`=? WHERE id =?";
+            String requete =  "UPDATE `evenement` SET `nom_evenement`=?,`description`=?,`nombre_de_participants`=?,`qr_code`=?,`billet`=?,`date_de_evenement`=?,`longitude`=?,`latitude`=? WHERE id =?";
            
             PreparedStatement pst= MyDb.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, t.getNomEvenement());
             pst.setString(2, t.getDescription());
             pst.setInt(3, t.getNombreDeParticipants());
             pst.setString(4, t.getQrCode());
-            pst.setString(5, t.getDateDeEvenement());
-            pst.setInt(5, t.getCollaborateur1());
-            pst.setString(5, t.getDateDeEvenement());
-            pst.setString(5, t.getDateDeEvenement());
-              pst.setInt(5, t.getId());
+            pst.setString(6, t.getDateDeEvenement());
+  
+            pst.setInt(5, t.getBillet());
+            pst.setFloat(7, t.getLongitude());
+            pst.setFloat(8, t.getLatitude());
+            pst.setInt(9, t.getId());
             pst.executeUpdate();
             System.out.println("un évènement a été MODIFIE!");                        
         } catch (SQLException ex) {
@@ -166,6 +167,11 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
 
     @Override
     public void trierCollaborateur() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void archiver(Evenement t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -190,6 +190,21 @@ tableColl.setItems(list);
     tableColl.setItems(list);
   //LBshow.setText("aa");
     }
+    @FXML
+    private void archiverr(ActionEvent event) {
+     ServiceCollaborateur sp = new ServiceCollaborateur();
+               
+  Collaborateur p = tableColl.getSelectionModel().getSelectedItem();
+  // int idd = Integer.parseInt(idddd.getText());
+//person.setId(idd);
+      
+       // System.out.println(person.getDfin());
+       sp.archiver(p);
+        ObservableList<Collaborateur> list = FXCollections.observableArrayList(sp.afficher());
+
+    tableColl.setItems(list);
+  //LBshow.setText("aa");
+    }
  }
 
 

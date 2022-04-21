@@ -19,6 +19,7 @@ public interface IService <T> {
     public void supprimer (int z);
     public void rechercherCollaborateur(int x);
     public void trierCollaborateur() ;
+    public void archiver(T t);
     //public List<T> eventjoin(int id);
     /*
     ....

@@ -30,7 +30,7 @@ public class NewFXMain extends Application {
       
         
         try {
-            Parent root =FXMLLoader.load(getClass().getResource("FXMLEvenement.fxml"));
+            Parent root =FXMLLoader.load(getClass().getResource("FXMLCollaborateur.fxml"));
             
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);

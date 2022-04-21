@@ -100,7 +100,7 @@ public class FXMLEvenementController implements Initializable {
        
   
         collaborateur1.setCellValueFactory(new PropertyValueFactory<Evenement, String>("collaborateur1"));
-        collaborateur1.setCellFactory(TextFieldTableCell.<Evenement> forTableColumn());  
+         
         nomcol.setCellValueFactory(new PropertyValueFactory<Evenement, String>("NomEvenement"));
         nomcol.setCellFactory(TextFieldTableCell.<Evenement> forTableColumn());
         desc.setCellValueFactory(new PropertyValueFactory<Evenement, String>("Description"));
@@ -109,13 +109,13 @@ public class FXMLEvenementController implements Initializable {
         im.setCellValueFactory(new PropertyValueFactory<Evenement, String>("QrCode"));
         im.setCellFactory(TextFieldTableCell.<Evenement> forTableColumn());
         billet.setCellValueFactory(new PropertyValueFactory<Evenement, String>("Billet"));
-        billet.setCellFactory(TextFieldTableCell.<Evenement> forTableColumn());
+        
         date.setCellValueFactory(new PropertyValueFactory<Evenement, String>("DateDeEvenement"));
         date.setCellFactory(TextFieldTableCell.<Evenement> forTableColumn());
         longitude.setCellValueFactory(new PropertyValueFactory<Evenement, String>("Longitude"));
-        longitude.setCellFactory(TextFieldTableCell.<Evenement> forTableColumn());
+        
         latitude.setCellValueFactory(new PropertyValueFactory<Evenement, String>("Latitude"));
-        latitude.setCellFactory(TextFieldTableCell.<Evenement> forTableColumn());
+        
         
         
         
@@ -153,7 +153,7 @@ if ((tfco1.getText().isEmpty()) ||(tfnom.getText().isEmpty()) || (tfdesc.getText
                          alert.setContentText("Veuillez remplir tous les champs");
                          alert.show();
                     }
- //sp.ajouter(new Evenement(tfco1.getText(),tfnom.getText(),tfdesc.getText(),Integer.parseInt(tfnb.getText()),tfqr.getText()),Integer.parseInt(tfbillet.getText()),tfdate.getText(),Float.parseFloat(tflon.getText()),Float.parseFloat(tflat.getText()));
+sp.ajouter(new Evenement(Integer.parseInt(tfco1.getText()),tfnom.getText(), tfdesc.getText(), Integer.parseInt(tfnb.getText()),tfqr.getText(),Integer.parseInt(tfbillet.getText()) ,tfdate.getValue().toString(),Float.parseFloat(tflon.getText()),Float.parseFloat(tflat.getText())) );
 ObservableList<Evenement> list = FXCollections.observableArrayList(sp.afficher());
 tableEvent.setItems(list);
 
@@ -177,6 +177,8 @@ tableEvent.setItems(list);
      idin.setText(idd);
      String nbb=String.valueOf(c.getNombreDeParticipants());
      tfnb.setText(nbb);
+     String BII=String.valueOf(c.getBillet());
+     tfbillet.setText(BII);
      String col1= String.valueOf(c.getCollaborateur1());
      tfco1.setText(col1);
      String lonn=String.valueOf(c.getLongitude());
@@ -200,15 +202,15 @@ tableEvent.setItems(list);
  Evenement c = tableEvent.getSelectionModel().getSelectedItem();
  int idd = Integer.parseInt(idin.getText());
   int bi = Integer.parseInt(tfbillet.getText());
- int col = Integer.parseInt(tfco1.getText());
+
  int nbb = Integer.parseInt(tfnb.getText());
- int lonn = (int) Float.parseFloat(tflon.getText());
- int latt = (int) Float.parseFloat(tflat.getText());
+ Float lonn =  Float.parseFloat(tflon.getText());
+ Float latt = Float.parseFloat(tflat.getText());
        c.setId(idd);
        c.setNombreDeParticipants(nbb);
        c.setLatitude(lonn);
        c.setLongitude(latt);
-       c.setCollaborateur1(col);
+     
    
        c.setNomEvenement(tfnom.getText());
        c.setDescription(tfdesc.getText());
