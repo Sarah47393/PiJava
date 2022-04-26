@@ -28,8 +28,8 @@ public class WorkShope3A35 {
   //Personne p2 = new Personne(4,"ben salah" , "ali");
   User t=new User();
    Emplois ee=new Emplois();
-  User t1=new User("hedi","zarrouk",1234,20508090,"Admin","Admin","bcbubrbr.jpg","1999-06-25");
-   User t3=new User("hedi5","zarrouk",1234,20558090,"Admin","Admin","bcbubrbr.jpg","1999-06-25");
+ // User t1=new User("hedi","zarrouk",1234,20508090,"Admin","Admin","bcbubrbr.jpg","1999-06-25");
+   //User t3=new User("hedi5","zarrouk",1234,20558090,"Admin","Admin","bcbubrbr.jpg","1999-06-25");
  Emplois e1=new Emplois(626,"1991-06-26 00:00:00","1999-06-25 00:01:01");
   //ServicePersonne sp =  new ServicePersonne();
   ServiceUser u = new ServiceUser();

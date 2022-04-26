@@ -52,7 +52,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
      List<User> Users = new ArrayList();
         try {
        
-        String querry ="SELECT * FROM `User` where arch is NULL";
+        String querry ="SELECT * FROM `User` where arch =0";
         Statement stm = cnx.createStatement();
             ResultSet rs= stm.executeQuery(querry);
         while (rs.next()){

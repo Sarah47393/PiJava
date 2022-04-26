@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import javafx.scene.control.ComboBox;
 import java.net.URL;
+import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
@@ -57,7 +58,10 @@ import javafx.scene.image.Image;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 
 import javafx.util.converter.IntegerStringConverter;
 import javax.swing.JFileChooser;
@@ -129,6 +133,8 @@ private Button img;
 private Button nomtri;
     @FXML
     private Button arch;
+    @FXML
+    private ListView<User> listuser;
 
     /**
      * Initializes the controller class.
@@ -145,8 +151,30 @@ private Button nomtri;
  //   assert selectedFruit != null : "fx:id=\"selectedFruit\" was not injected: check your FXML file 'fruitcombo.fxml'.";
 
     ServiceUser sp = new ServiceUser();
-       
-  
+        String url1 = "http://127.0.0.1/projetpi/public/Uploads/image/";
+   ObservableList<User> items =FXCollections.observableArrayList (
+                sp.afficher());
+        listuser.setItems(items);
+
+        listuser.setCellFactory(param -> new ListCell<User>() {
+            private ImageView imageView = new ImageView();
+            
+            @Override
+            public void updateItem(User name, boolean empty) {
+                super.updateItem(name, empty);
+                if (empty) {
+                    setText(null);
+                    setGraphic(null);
+                    imageView.setFitWidth(100);
+                    imageView.setFitHeight(100);
+                } else {
+                  Image image = new Image(url1+name.getImage());
+                        imageView.setImage(image);
+                    setText(name.toString());
+                    setGraphic(imageView);
+                }
+            }
+        });
     
         nomcol.setCellValueFactory(new PropertyValueFactory<User, String>("nom"));
               nomcol.setCellFactory(TextFieldTableCell.<User> forTableColumn());
@@ -160,6 +188,7 @@ passwordcol.setCellValueFactory(new PropertyValueFactory<User, String>("password
 accesscol.setCellValueFactory(new PropertyValueFactory<User, String>("access"));
  accesscol.setCellFactory(TextFieldTableCell.<User> forTableColumn());
  imagecol.setCellValueFactory(new PropertyValueFactory<User, String>("image"));
+
 datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissance"));
  datecol.setCellFactory(TextFieldTableCell.<User> forTableColumn());
  idcol.setCellValueFactory(new PropertyValueFactory<User, String>("id"));
@@ -246,8 +275,8 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
         LBshow.setText(nom);
           ObservableList<User> list1 = FXCollections.observableArrayList(sp1.rechstream(u1));
 
-    tableuser.setItems(list1);
-    if(tfrech.getText().trim().isEmpty()){    tableuser.setItems(list);}
+    listuser.setItems(list1);
+    if(tfrech.getText().trim().isEmpty()){    listuser.setItems(items);}
    ;
 });
       trinom.getItems().setAll("nom", "prenom", "date");
@@ -259,11 +288,11 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
     trinom.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
       @Override public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
      if(newFruit=="nom"){  ObservableList<User> list2 = FXCollections.observableArrayList(sp.tristreamnom());
-       tableuser.setItems(list2);}
+       listuser.setItems(list2);}
      if(newFruit=="prenom"){  ObservableList<User> list2 = FXCollections.observableArrayList(sp.tristreamprenom());
-       tableuser.setItems(list2);}
+       listuser.setItems(list2);}
      if(newFruit=="date"){  ObservableList<User> list2 = FXCollections.observableArrayList(sp.tristreamdate());
-       tableuser.setItems(list2);}
+       listuser.setItems(list2);}
     }  });  }
      @FXML
     private void ajouterPersonne(ActionEvent event) {
@@ -301,7 +330,7 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
         sp.ajouter(new User(tfnom.getText() ,tfprenom.getText(),pass,cinn,tfrole.getText(),tfaccess.getText(),tfimage.getText(),tfdate.getValue().toString() ));
           ObservableList<User> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableuser.setItems(list);}
+    listuser.setItems(list);}
   
     }
 
@@ -314,7 +343,7 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
 sp.supprimer(person);
  ObservableList<User> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableuser.setItems(list);
+    listuser.setItems(list);
     
     }
      @FXML
@@ -325,13 +354,13 @@ sp.supprimer(person);
      ServiceUser sp = new ServiceUser();
             
       
-  User person = tableuser.getSelectionModel().getSelectedItem();
+  User person = listuser.getSelectionModel().getSelectedItem();
      Image image = new Image(url1+person.getImage());
     // String decodedString = new String(base64.decode(person.getImage().getBytes()));
-   try{  byte[] bytes = person.getImage().getBytes("UTF-8");
+   /*try{  byte[] bytes = person.getImage().getBytes("UTF-8");
      String s2 = new String(bytes, "UTF-8");
    System.out.println(s2);}
-   catch(Exception e){}
+   catch(Exception e){}*/
   Image.setImage(image);
   String idd=String.valueOf(person.getId());
   tfid.setText(idd);
@@ -365,7 +394,7 @@ sp.supprimer(person);
        sp.modifier(person);
         ObservableList<User> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableuser.setItems(list);
+    listuser.setItems(list);
   //LBshow.setText("aa");
     }
        @FXML
@@ -374,10 +403,10 @@ sp.supprimer(person);
           JFileChooser chooser=new JFileChooser(); 
                chooser.showOpenDialog(null);
                File f=chooser.getSelectedFile();
-               String fileName=f.getAbsolutePath();
+//               String fileName=f.getAbsolutePath();
                  String fileName1=f.getName();
                 // try{ String fileName2=f.getCanonicalPath();
-               tfimage.setText(fileName1);/*}
+              /*}
                
                  catch(Exception e){}*/
                //   Image image = new Image(tfimage.getText());
@@ -411,9 +440,30 @@ sp.supprimer(person);
   } catch (IOException e) {
     e.printStackTrace();
   }*/
-    System.out.println(f.getAbsolutePath());
+    System.out.println(f.getPath());
+    String fileName2 = f.getName();          
+String fileExtension = fileName2.substring(fileName2.lastIndexOf(".") + 1, f.getName().length());
+System.out.println(fileExtension);
+String uuid = UUID.randomUUID().toString()+"."+fileExtension;
+//String s=fileExtension;
+      Path copied = Paths.get("c:"+url1+uuid);
+        Path originalPath = Paths.get(f.getAbsolutePath());
+try{Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
 
+ System.out.println(copied);
+ 
+}
+catch(Exception e){}
+ tfimage.setText(uuid);
+  /*   Path movefrom = FileSystems.getDefault().getPath(f.getPath());
+            try{ Path target = FileSystems.getDefault().getPath(url1+f.getName());
+            Path targetDir = FileSystems.getDefault().getPath(url1); System.out.println("te66est");
+           
+                Files.copy(movefrom,target, StandardCopyOption.REPLACE_EXISTING);
+                 System.out.println("teest");
+            }catch (IOException e){ System.out.println("te55est");}*/
     }
+   
       @FXML
       private void tri(ActionEvent event) {
            ServiceUser sp = new ServiceUser();
@@ -429,7 +479,7 @@ sp.supprimer(person);
     private void archPersonnes1(ActionEvent event) {
      ServiceUser sp = new ServiceUser();
                
-  User person = tableuser.getSelectionModel().getSelectedItem();
+  User person = listuser.getSelectionModel().getSelectedItem();
   // int idd = Integer.parseInt(idddd.getText());
 //person.setId(idd);
       
@@ -437,7 +487,7 @@ sp.supprimer(person);
        sp.arch(person);
         ObservableList<User> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableuser.setItems(list);
+    listuser.setItems(list);
   //LBshow.setText("aa");
     }
 }

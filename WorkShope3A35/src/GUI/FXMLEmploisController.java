@@ -23,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -40,18 +41,17 @@ public class FXMLEmploisController implements Initializable {
 
     @FXML
     private TableView<Emplois> tableemplois;
+
     @FXML
-private TableColumn<Emplois, String> idcol;
+    private TableColumn<Emplois, String> nomcol;
     @FXML
-private TableColumn<Emplois, String> nomcol;
+    private TableColumn<Emplois, String> prenomcol;
     @FXML
-private TableColumn<Emplois, String> prenomcol;
+    private TableColumn<Emplois, String> cincol;
     @FXML
-private TableColumn<Emplois, String> cincol;
+    private TableColumn<Emplois, String> ddbut;
     @FXML
-private TableColumn<Emplois, String> ddbut;
-    @FXML
-private TableColumn<Emplois, String> dfin;
+    private TableColumn<Emplois, String> dfin;
     @FXML
     private TextField recheerche;
     @FXML
@@ -76,6 +76,7 @@ private TableColumn<Emplois, String> dfin;
     private ComboBox<User> cinuser;
     @FXML
     private Button archiver;
+ 
 
     /**
      * Initializes the controller class.
@@ -120,7 +121,7 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
  ddbut.setCellFactory(TextFieldTableCell.<Emplois> forTableColumn());
  dfin.setCellValueFactory(new PropertyValueFactory<Emplois, String>("dfin"));
  dfin.setCellFactory(TextFieldTableCell.<Emplois> forTableColumn());
- idcol.setCellValueFactory(new PropertyValueFactory<Emplois, String>("id"));
+
   tableemplois.setEditable(true);
     nomcol.setOnEditCommit((TableColumn.CellEditEvent<Emplois, String> event) -> {
             TablePosition<Emplois, String> pos = event.getTablePosition();

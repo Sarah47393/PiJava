@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.image.ImageView;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +15,7 @@ package Model;
 public class Personne {
  private int id ;
  private String nom ,prenom,arch ;
+
 
     public void setArch(String arch) {
         this.arch = arch;

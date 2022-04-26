@@ -97,7 +97,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
             ResultSet rs= stm.executeQuery(querry);
         while (rs.next()){
             Emplois p = new Emplois();
-                 p.setId(rs.getInt(1));
+             //    p.setId(rs.getInt(1));
             p.setNom(rs.getString("nom"));
             p.setPrenom(rs.getString("prenom"));
             p.setDdebut(rs.getString("ddebut"));
@@ -271,5 +271,34 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
    
   return afficher().stream().sorted((p1,p2)->p1.getDfin().compareTo(p2.getDfin())).collect(Collectors.toList());
 
+    }
+ public List<String> afficher2() {
+     List<Emplois> Emploiss = new ArrayList();
+     String s="";
+     List<String> ss = new ArrayList();
+        try {
+       
+        String querry ="SELECT * FROM `Emplois` where arch is NULL ";
+        Statement stm = cnx.createStatement();
+            ResultSet rs= stm.executeQuery(querry);
+        while (rs.next()){
+            Emplois p = new Emplois();
+             //    p.setId(rs.getInt(1));
+            p.setNom(rs.getString("nom"));
+            p.setPrenom(rs.getString("prenom"));
+            p.setDdebut(rs.getString("ddebut"));
+            p.setDfin(rs.getString("dfin"));
+                      p.setCin(rs.getInt("cin"));
+                       Emploiss.add(p);
+                        s="nom: "+p.getNom()+" prenom: "+p.getPrenom()+" cin: "+p.getCin()+" datedebut: "+p.getDdebut()+" datefin: "+p.getDfin();
+                        ss.add(s);
+        }
+        
+        
+        
+        return ss;
+    } catch (SQLException ex) {
+        }
+    return ss;
     }
 }
