@@ -51,6 +51,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import Services.Alerte;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.UUID;
+import javax.swing.JFileChooser;
 
 /**
  * FXML Controller class
@@ -117,9 +124,11 @@ public class FXMLEvenementController implements Initializable {
     @FXML
     private ComboBox<String> trinom;
     @FXML
-    private ComboBox<Evenement> cinuser;
+    private ComboBox<Collaborateur> cinuser;
     @FXML
     private TableColumn<?, ?> option;
+    @FXML
+    private Button btnnnn;
 
     /**
      * Initializes the controller class.
@@ -128,7 +137,7 @@ public class FXMLEvenementController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
        ServiceEvenement sp = new ServiceEvenement ();
-       
+       // System.out.println(LocalDate.now());
   
         collaborateur1.setCellValueFactory(new PropertyValueFactory<Evenement, String>("collaborateur1"));
          
@@ -288,8 +297,8 @@ public class FXMLEvenementController implements Initializable {
        tableEvent.setItems(list2);}
     }  }); 
     
-    
-    ObservableList<Evenement> list22 = FXCollections.observableArrayList(sp.afficher());
+    ServiceCollaborateur co = new ServiceCollaborateur();
+    ObservableList<Collaborateur> list22 = FXCollections.observableArrayList(co.afficher());
 //cinuser.add(list22.get(0));
 cinuser.setItems(list22);
     
@@ -353,18 +362,28 @@ cinuser.setItems(list22);
     private void ajouterE(ActionEvent event)  {
         
        ServiceEvenement sp= new ServiceEvenement();
-if ((tfco1.getText().isEmpty()) ||(tfnom.getText().isEmpty()) || (tfdesc.getText().isEmpty())|| (nb.getText().isEmpty()) ||(im.getText().isEmpty())||(billet.getText().isEmpty())||(date.getText().isEmpty())||(tflon.getText().isEmpty())||(tflat.getText().isEmpty()))
+if ((tfnom.getText().isEmpty()) || (tfdesc.getText().isEmpty())|| (nb.getText().isEmpty()) ||(im.getText().isEmpty())||(billet.getText().isEmpty())||(date.getText().isEmpty())||(tflon.getText().isEmpty())||(tflat.getText().isEmpty()))
                     {
                          Alert alert = new Alert(Alert.AlertType.ERROR);
                          alert.setTitle("Champ(s) vide(s)");
                          alert.setContentText("Veuillez remplir tous les champs");
                          alert.show();
                     }
-sp.ajouter(new Evenement(Integer.parseInt(tfco1.getText()),tfnom.getText(), tfdesc.getText(), Integer.parseInt(tfnb.getText()),tfqr.getText(),Integer.parseInt(tfbillet.getText()) ,tfdate.getValue().toString(),Float.parseFloat(tflon.getText()),Float.parseFloat(tflat.getText())) );
+else if ((tfdate.getValue().isBefore(LocalDate.now())))
+            
+        {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("Champ(s) vide(s)");
+                         alert.setContentText("Veuillez donner une date sup");
+                         alert.show();   
+        }
+else {
+int cin2    =  cinuser.getSelectionModel().getSelectedItem().getId();
+sp.ajouter(new Evenement(cin2,tfnom.getText(), tfdesc.getText(), Integer.parseInt(tfnb.getText()),tfqr.getText(),Integer.parseInt(tfbillet.getText()) ,tfdate.getValue().toString(),Float.parseFloat(tflon.getText()),Float.parseFloat(tflat.getText())) );
 Alerte.display("VisualArtsTeam", "un évènement a été ajouté avec succès");
 ObservableList<Evenement> list = FXCollections.observableArrayList(sp.afficher());
 tableEvent.setItems(list);
-int cin2    =  cinuser.getSelectionModel().getSelectedItem().getId();
+}
         try {
             Calendar(tfnom.getText(),tfdate.getValue().toString(),tfdate.getValue().toString());
         } catch (IOException ex) {
@@ -446,7 +465,7 @@ int cin2    =  cinuser.getSelectionModel().getSelectedItem().getId();
 HttpURLConnection http = (HttpURLConnection)url.openConnection();
 http.setRequestMethod("POST");
 http.setDoOutput(true);
-http.setRequestProperty("Authorization", "Bearer ya29.A0ARrdaM9P_U9Tvke-OH_MYC6cuSyDIe4_4r30caN3gOxFkuocL4FWW24KADJiIJYgC4TxVFwLC-2ZWSgdFT5fBcDAH5WtQjCcpcfjX9VNL69AP4-wx9xPgLlkWRP3Bh_Owmgj-rpQrbvGpK1OD7a1pDWCbEMW");
+http.setRequestProperty("Authorization", "Bearer ya29.A0ARrdaM_qhJdhGvG-_uiSFj5euyEtYcGtDhKdZskG3aUbV7edw9naui_rB7h0bSV8JfYqKzF0KDbMyLsOEVrgqX0pym0LCwwmVPNzC_7HFy-j0dY8UyZBJZ9WfdTUaa5HgFpr9NBZxBEQ84vv6R4awXdz51Ot");
 String data = "{\n\"summary\": \""+Titre+"\",\n  \"location\": \"Visual Arts Application\",\n  \"start\": {\n    \"dateTime\": \""+Datedeb+"T10:00:00.000-07:00\"\n  },\n  \"end\": {\n    \"dateTime\": \""+Datefin+"T10:25:00.000-07:00\"\n    }\n\n}";
 //String data = "{\n\"summary\": \"tournament\",\n  \"location\": \"Arena Application\",\n  \"start\": {\n    \"dateTime\": \""+tfDateDebut.getValue().format(DateTimeFormatter.ISO_DATE)+"T10:00:00.000-07:00\"\n  },\n  \"end\": {\n    \"dateTime\": \""+tfDateFin.getValue().format(DateTimeFormatter.ISO_DATE)+"\n    },\n\"etag\": \"\", \n      \"backgroundColor\": \"#b80672\", \n      \"timeZone\": \"UTC\", \n      \"accessRole\": \"reader\",\n\"kind\": \"calendar#calendarListEntry\", \n      \"foregroundColor\": \"#ffffff\", \n      \"defaultReminders\": [], \n      \"colorId\": \"2\"\n\n}\n";
 byte[] out = data.getBytes(StandardCharsets.UTF_8);
@@ -461,7 +480,73 @@ http.disconnect();
 }
 
     
-    
+    @FXML
+    private void image(ActionEvent event) {
+        
+         String url1 = "/xampp/htdocs/ProjetpiDevmob/public/Uploads/image/";
+          JFileChooser chooser=new JFileChooser(); 
+               chooser.showOpenDialog(null);
+               File f=chooser.getSelectedFile();
+//               String fileName=f.getAbsolutePath();
+                 String fileName1=f.getName();
+                // try{ String fileName2=f.getCanonicalPath();
+              /*}
+               
+                 catch(Exception e){}*/
+               //   Image image = new Image(tfimage.getText());
+                 //  Image.setImage(image);
+                  // File file = JFileChooser.showSaveDialog(primaryStage);
+               //    File file2 = chooser.showSaveDialog();
+             
+
+   /* try {
+
+        f.move(Paths.get(fileName), Paths.get(url1), StandardCopyOption.REPLACE_EXISTING);
+
+    } catch (Exception e) {
+
+     
+        e.printStackTrace();
+    }*/
+       System.out.println(f.getAbsolutePath());
+    /* f = new File(fileName);
+    f.renameTo(new File(url1));*/
+    //f.move(fileName, url1, StandardCopyOption.REPLACE_EXISTING);
+   /*try{ f.createNewFile();}
+   catch(Exception e){}*/
+  /*  Path source = Paths.get(fileName);
+  Path target = Paths.get(url1);
+
+  try{
+
+    Files.move(source, target);
+
+  } catch (IOException e) {
+    e.printStackTrace();
+  }*/
+    System.out.println(f.getPath());
+    String fileName2 = f.getName();          
+String fileExtension = fileName2.substring(fileName2.lastIndexOf(".") + 1, f.getName().length());
+System.out.println(fileExtension);
+String uuid = UUID.randomUUID().toString()+"."+fileExtension;
+//String s=fileExtension;
+      Path copied = Paths.get("c:"+url1+uuid);
+        Path originalPath = Paths.get(f.getAbsolutePath());
+try{Files.copy(originalPath, copied, StandardCopyOption.REPLACE_EXISTING);
+
+ System.out.println(copied);
+ 
+}
+catch(Exception e){}
+tfqr.setText(uuid);
+  /*   Path movefrom = FileSystems.getDefault().getPath(f.getPath());
+            try{ Path target = FileSystems.getDefault().getPath(url1+f.getName());
+            Path targetDir = FileSystems.getDefault().getPath(url1); System.out.println("te66est");
+           
+                Files.copy(movefrom,target, StandardCopyOption.REPLACE_EXISTING);
+                 System.out.println("teest");
+            }catch (IOException e){ System.out.println("te55est");}*/
+    }
     
     
     

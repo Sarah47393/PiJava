@@ -60,26 +60,6 @@ import Services.Alerte;
 public class FXMLFRONTEventController implements Initializable {
 
     @FXML
-    private TextField tfco1;
-      @FXML
-    private TextField idin;
-    @FXML
-    private TextField tfbillet;
-    @FXML
-    private TextField tfqr;
-    @FXML
-    private TextField tfnom;
-    @FXML
-    private TextField tfdesc;
-    @FXML
-    private TextField tfnb;
-    @FXML
-    private TextField tflon;
-    @FXML
-    private TextField tflat;
-    @FXML
-    private DatePicker tfdate;
-    @FXML
     private TableView<Evenement> tableEvent;
     @FXML
     private TableColumn<Evenement,String> collaborateur1;
@@ -99,27 +79,7 @@ public class FXMLFRONTEventController implements Initializable {
     private TableColumn<Evenement,String> longitude;
     @FXML
     private TableColumn<Evenement,String> latitude;
-    @FXML
-    private Button reb;
-    @FXML
-    private Button btnm;
-    @FXML
-    private Button btnc;
-    @FXML
-    private Button btnf;
-    @FXML
-    private Button btna;
-      @FXML
-    private TextField tfrech;
     
-    @FXML
-    private Button btnss;
-    @FXML
-    private ComboBox<String> trinom;
-    @FXML
-    private ComboBox<Evenement> cinuser;
-    @FXML
-    private TableColumn<?, ?> option;
 
     /**
      * Initializes the controller class.
@@ -244,5 +204,21 @@ public class FXMLFRONTEventController implements Initializable {
             c.setNomEvenement(newFullName);
             sp.modifier(c);
         });
+    }
+
+    @FXML
+    private void profile(ActionEvent event) {
+    }
+
+    @FXML
+    private void teams(ActionEvent event) {
+    }
+
+    @FXML
+    private void ajouterReclamation(ActionEvent event) {
+    }
+
+    @FXML
+    private void avis(ActionEvent event) {
     }
 }

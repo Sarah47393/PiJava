@@ -9,9 +9,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLEvenementController">
+<AnchorPane id="AnchorPane" stylesheets="@frontoffice.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLEvenementController">
    <children>
-      <TextField fx:id="tfco1" layoutX="118.0" layoutY="257.0" prefHeight="25.0" prefWidth="103.0" />
       <TextField fx:id="tfbillet" layoutX="118.0" layoutY="429.0" prefHeight="25.0" prefWidth="103.0" />
       <TextField fx:id="tfqr" layoutX="118.0" layoutY="393.0" prefHeight="25.0" prefWidth="103.0" />
       <TextField fx:id="tfnom" layoutX="118.0" layoutY="292.0" prefHeight="25.0" prefWidth="103.0" />
@@ -50,9 +49,10 @@
       <Button fx:id="reb" layoutX="691.0" layoutY="270.0" mnemonicParsing="false" text="Rechercher" />
       <TextField fx:id="tfrech" layoutX="514.0" layoutY="270.0" />
       <TextField fx:id="idin" layoutX="118.0" layoutY="228.0" prefHeight="25.0" prefWidth="103.0" visible="false" />
-      <Button fx:id="btnf" layoutX="334.0" layoutY="369.0" mnemonicParsing="false" onAction="#afficherEE" text="Formulaire" />
+      <Button fx:id="btnf" layoutX="334.0" layoutY="369.0" mnemonicParsing="false" onAction="#afficherEE" style="-fx-background-color: 1212;" text="Formulaire" />
       <Button fx:id="btnss" layoutX="599.0" layoutY="356.0" mnemonicParsing="false" onAction="#sauvegarde" text="Sauvegarde" />
       <ComboBox fx:id="trinom" layoutX="514.0" layoutY="312.0" prefWidth="150.0" />
-      <ComboBox fx:id="cinuser" layoutX="118.0" layoutY="228.0" onAction="#afficher" prefHeight="25.0" prefWidth="103.0" />
+      <ComboBox fx:id="cinuser" layoutX="118.0" layoutY="257.0" onAction="#afficher" prefHeight="25.0" prefWidth="103.0" />
+      <Button fx:id="btnnnn" layoutX="239.0" layoutY="393.0" mnemonicParsing="false" onAction="#image" text="parcourir" />
    </children>
 </AnchorPane>
