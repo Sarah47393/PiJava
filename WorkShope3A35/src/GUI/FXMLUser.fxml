@@ -55,5 +55,7 @@
       <ComboBox id="trinom" fx:id="trinom" layoutX="1032.0" layoutY="495.0" prefWidth="150.0" />
       <Button fx:id="arch" layoutX="302.0" layoutY="470.0" mnemonicParsing="false" onAction="#archPersonnes1" text="archiver" />
       <ListView fx:id="listuser" layoutX="510.0" layoutY="74.0" prefHeight="370.0" prefWidth="704.0" />
+      <Label layoutX="45.0" layoutY="33.0" text="email" />
+      <TextField fx:id="tfemail" layoutX="87.0" layoutY="29.0" onAction="#tfemail" />
    </children>
 </AnchorPane>

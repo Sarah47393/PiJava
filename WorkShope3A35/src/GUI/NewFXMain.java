@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Model.User;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,19 +25,24 @@ import javafx.stage.Stage;
  * @author Mohamed
  */
 public class NewFXMain extends Application {
-    
+      public User user1 = new User();
     @Override
     public void start(Stage primaryStage) {
       
-        
+       
+   
         try {
-            Parent root =FXMLLoader.load(getClass().getResource("FXMLUser.fxml"));
+            
+           // Parent root =FXMLLoader.load(getClass().getResource("FXMLUser.fxml"));
+           Parent root =FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
                       //  Parent root =FXMLLoader.load(getClass().getResource("FXMLEmplois.fxml"));
 
             Scene scene = new Scene(root);
+            
             primaryStage.setScene(scene);
             primaryStage.setTitle("-----Gestion User ------");
             primaryStage.show();
+            
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

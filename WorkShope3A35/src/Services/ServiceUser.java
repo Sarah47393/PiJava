@@ -34,7 +34,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
    @Override
     public void ajouter(User t) {
     try {
-        String querry= "INSERT INTO User(`nom`, `prenom`,`password`,`cin`,`role`,`access`,`image`,`datenaissance`) VALUES ('"+t.getNom()+"','"+t.getPrenom()+"','"+t.getPassword()+"','"+t.getCin()+"','"+t.getRole()+"','"+t.getAccess()+"','"+t.getImage()+"','"+t.getDatenaissance()+"')";
+        String querry= "INSERT INTO User(`nom`, `prenom`,`password`,`cin`,`role`,`access`,`image`,`datenaissance`,`email`) VALUES ('"+t.getNom()+"','"+t.getPrenom()+"','"+t.getPassword()+"','"+t.getCin()+"','"+t.getRole()+"','"+t.getAccess()+"','"+t.getImage()+"','"+t.getDatenaissance()+"','"+t.getEmail()+"')";
         Statement stm = cnx.createStatement();
     
     stm.executeUpdate(querry);
@@ -59,6 +59,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
             User p = new User();
             
             p.setId(rs.getInt(1));
+             p.setEmail(rs.getString("email"));
             p.setNom(rs.getString("nom"));
             p.setPrenom(rs.getString(3));
             p.setPassword(rs.getInt("password"));
@@ -224,7 +225,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     public List<User> rechstream(User x) {
 
      
-     return afficher().stream().filter(p->(String.valueOf(p.getCin()).contains(String.valueOf(x.getCin())))||(p.getNom().contains(x.getNom()))||(p.getDatenaissance().contains(x.getDatenaissance()))||(p.getPrenom().contains(x.getPrenom()))||(p.getRole().contains(x.getRole()))||(p.getAccess().contains(x.getAccess()))).collect(Collectors.toList());
+     return afficher().stream().filter(p->(String.valueOf(p.getCin()).contains(String.valueOf(x.getCin())))||(p.getNom().contains(x.getNom()))||(p.getDatenaissance().contains(x.getDatenaissance()))||(p.getPrenom().contains(x.getPrenom()))||(p.getRole().contains(x.getRole()))||(p.getAccess().contains(x.getAccess()))||(p.getEmail().contains(x.getEmail()))).collect(Collectors.toList());
   
 //return afficher().stream().filter(p->(String.valueOf(p.getCin()).contains(String.valueOf(x.getCin())))).collect(Collectors.toList());
   
@@ -286,6 +287,20 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     } catch (SQLException ex) {
         }
     return Users;}
-         
+         public String existe(User t){
+          List<User> Users = afficher().stream().filter(p->(p.getEmail().equals(t.getEmail()))&&(String.valueOf(p.getPassword()).equals(String.valueOf(t.getPassword())))).collect(Collectors.toList());
+          System.out.println(Users);
+   
+    if (Users.isEmpty()){
+          
+
+    return "null";}
+    else{ 
+        
+        
+        t.setRole(Users.get(0).getRole());}
+    return t.getRole();
+    
+         }
 }
 

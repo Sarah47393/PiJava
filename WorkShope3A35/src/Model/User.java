@@ -13,7 +13,15 @@ import java.util.Date;
  */
 public class User {
      private int id,password,cin;
-    private String nom,prenom,datenaissance,role,access,image,arch;
+    private String nom,prenom,datenaissance,role,access,image,arch,email;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public String getArch() {
         return arch;
@@ -35,9 +43,10 @@ public class User {
         this.access = u_c.access;
         this.image = u_c.image;
           this.datenaissance = u_c.datenaissance;
+          this.email=u_c.email;
     }
  
-    public User(int password, int cin, String nom, String prenom, String datenaissance, String access, String image) {
+    public User(int password, int cin, String nom, String prenom, String datenaissance, String access, String image,String email) {
         this.password = password;
         this.cin = cin;
         this.nom = nom;
@@ -45,6 +54,7 @@ public class User {
         this.datenaissance = datenaissance;
         this.access = access;
         this.image = image;
+        this.email=email;
     }
 
     public User(int cin, int password) {
@@ -52,7 +62,12 @@ public class User {
          this.cin = cin;
          this.password = password;
     }
-      public User(int id, String nom, String prenom, int password, int cin, String access, String image, String datenaissance) {
+     public User(String email, int password) {
+       
+         this.email=email;
+         this.password = password;
+    }
+      public User(int id, String nom, String prenom, int password, int cin, String access, String image, String datenaissance,String email) {
         this.id = id;
        
         this.nom = nom;
@@ -63,9 +78,10 @@ public class User {
         this.access = access;
         this.image = image;
          this.datenaissance = datenaissance;
+         this.email=email;
     }
 
-    public User( String nom, String prenom,int password, int cin, String role, String access, String image, String datenaissance) {
+    public User( String nom, String prenom,int password, int cin, String role, String access, String image, String datenaissance,String email) {
        
         this.nom = nom;
         this.prenom = prenom;
@@ -75,12 +91,12 @@ public class User {
         this.access = access;
         this.image = image;
          this.datenaissance = datenaissance;
-    
+    this.email=email;
     }
 
   
 
-    public User(int id, String nom, String prenom, int password, int cin , String role, String access, String image,String datenaissance) {
+    public User(int id, String nom, String prenom, int password, int cin , String role, String access, String image,String datenaissance,String email) {
         this.id = id;
        
         this.nom = nom;
@@ -91,12 +107,12 @@ public class User {
         this.access = access;
         this.image = image;
          this.datenaissance = datenaissance;
-       
+       this.email=email;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id +  ", nom=" + nom + ", prenom=" + prenom +", password=" + password + ", cin=" + cin +  ", role=" + role + ", access=" + access + ", image=" + image +", datenaissance=" + datenaissance + "}\n";
+        return "User{" + "id=" + id +  ", nom=" + nom + ", prenom=" + prenom +", password=" + password + ", cin=" + cin +  ", role=" + role + ", access=" + access + ", image=" + image +", datenaissance=" + datenaissance +", email=" + email+ "}\n";
     }
 
     public int getId() {

@@ -73,7 +73,7 @@ import javax.swing.JFileChooser;
  */
 
 public class FXMLUserController implements Initializable {
-    
+   
     @FXML
     private TextField tfnom;
      @FXML
@@ -135,6 +135,8 @@ private Button nomtri;
     private Button arch;
     @FXML
     private ListView<User> listuser;
+    @FXML
+    private TextField tfemail;
 
     /**
      * Initializes the controller class.
@@ -266,6 +268,7 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
         u1.setAccess(nom);
         u1.setPrenom(nom);
         u1.setRole(nom);
+        u1.setEmail(nom);
         u1.setDatenaissance(nom);
          try{
               int cin1 = Integer.parseInt(nom);
@@ -299,7 +302,7 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
        
              
                
-     if ((tfnom.getText().isEmpty())||(tfimage.getText().isEmpty()) ||(tfpassword.getText().isEmpty()) ||(tfprenom.getText().isEmpty()) || (tfcin.getText().isEmpty())|| (tfrole.getText().isEmpty()) ||(tfaccess.getText().isEmpty()))
+     if ((tfnom.getText().isEmpty())||(tfimage.getText().isEmpty()) ||(tfpassword.getText().isEmpty())||(tfemail.getText().isEmpty()) ||(tfprenom.getText().isEmpty()) || (tfcin.getText().isEmpty())|| (tfrole.getText().isEmpty()) ||(tfaccess.getText().isEmpty()))
                     {
                          Alert alert = new Alert(Alert.AlertType.ERROR);
                          alert.setTitle("Champ(s) vide(s)");
@@ -323,11 +326,20 @@ datecol.setCellValueFactory(new PropertyValueFactory<User, String>("datenaissanc
                          alert.setContentText("Veuillez remplir tous les champs");
                          alert.show();
                     }
+     //someString.matches("stores.*store.*product.*")
+      else               
+     if (!tfemail.getText().matches(".*@.*..*"))
+                    {
+                         Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("vous devez entrer une address mail valide ");
+                         alert.setContentText("vous devez entrer une address mail valide ");
+                         alert.show();
+                    }
      else{  ServiceUser sp = new ServiceUser();
        int pass = Integer.parseInt(tfpassword.getText());
             int cinn = Integer.parseInt(tfcin.getText());
           
-        sp.ajouter(new User(tfnom.getText() ,tfprenom.getText(),pass,cinn,tfrole.getText(),tfaccess.getText(),tfimage.getText(),tfdate.getValue().toString() ));
+        sp.ajouter(new User(tfnom.getText() ,tfprenom.getText(),pass,cinn,tfrole.getText(),tfaccess.getText(),tfimage.getText(),tfdate.getValue().toString(),tfemail.getText()));
           ObservableList<User> list = FXCollections.observableArrayList(sp.afficher());
 
     listuser.setItems(list);}
@@ -366,6 +378,7 @@ sp.supprimer(person);
   tfid.setText(idd);
     tfnom.setText(person.getNom());
      tfprenom.setText(person.getPrenom());
+      tfemail.setText(person.getEmail());
      String ci= String.valueOf(person.getCin());
       tfcin.setText(ci);
       tfrole.setText(person.getRole());
@@ -388,6 +401,7 @@ sp.supprimer(person);
        person.setPrenom(tfprenom.getText());
           int cci = Integer.parseInt(tfcin.getText());
        person.setCin(cci);
+        person.setEmail(tfemail.getText());
        person.setRole(tfrole.getText());
        person.setAccess(tfaccess.getText());
        person.setDatenaissance(tfdate.getValue().toString());
@@ -489,5 +503,9 @@ catch(Exception e){}
 
     listuser.setItems(list);
   //LBshow.setText("aa");
+    }
+
+    @FXML
+    private void tfemail(ActionEvent event) {
     }
 }
