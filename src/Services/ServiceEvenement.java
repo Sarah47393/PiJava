@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import utils.MyDb;
 
 
@@ -159,21 +160,59 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
   }
     
     */
+  public List<Evenement> tristreamnom() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getNomEvenement().compareTo(p2.getNomEvenement())).collect(Collectors.toList());
 
-    @Override
-    public void rechercherCollaborateur(int x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public List<Evenement> tristreamDescription() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getDescription().compareTo(p2.getDescription())).collect(Collectors.toList());
 
-    @Override
-    public void trierCollaborateur() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+     public List<Evenement> tristreamdate() {
+   
+  return afficher().stream().sorted((p1,p2)->p1.getDateDeEvenement().compareTo(p2.getDateDeEvenement())).collect(Collectors.toList());
+
+    }
+      
+   @Override
+    public List<Evenement> rechstream(Evenement x) {
+     
+     
+     return afficher().stream().filter(p->p.getDateDeEvenement().contains(x.getDateDeEvenement())).collect(Collectors.toList());
+  
+
+      
+    }
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
 
     @Override
     public void archiver(Evenement t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Evenement> tristreamdescription() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    
+
+   
     
    
     }

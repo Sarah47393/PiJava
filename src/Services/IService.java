@@ -17,9 +17,11 @@ public interface IService <T> {
     public List<T> afficher();
     public void  modifier (T t );
     public void supprimer (int z);
-    public void rechercherCollaborateur(int x);
-    public void trierCollaborateur() ;
+    //public void rechercherCollaborateur(int x);
+   // public void trierCollaborateur() ;
     public void archiver(T t);
+    public List<T> tristreamdescription() ;
+    public List<T> rechstream(T x);
     //public List<T> eventjoin(int id);
     /*
     ....

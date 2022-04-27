@@ -6,6 +6,8 @@
 package Services;
 
 import Model.Collaborateur;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +50,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
             ps.setString(1,"1");
             ps.setInt(2, t.getId());
             ps.executeUpdate();
-            System.out.println("Collaborateur modifié");
+            System.out.println("Collaborateur archivé");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -114,9 +116,44 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
        {
           System.out.println(ex.getMessage());
        }
+        
          }
+    
 
-    @Override
+    
+    
+    
+    
+   public  void  sms () {
+ 
+   
+      //  Twilio.init("ACc081a8d42c1f270e76774227bd218f66","eeff0956f708da011f751d102d0cae2e");
+        String a = "votre prochaine evenemenet est le " ;
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("+21646354484"),
+                new com.twilio.type.PhoneNumber("+19593011606"),
+                "votre modification a été éffectuée avec succès " )
+            .create();
+
+        System.out.println(message.getSid());
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  /*  @Override
     public void rechercherCollaborateur(int x) {
         List<Collaborateur> collaborateurs = new ArrayList();
       boolean test ;
@@ -190,6 +227,16 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     */
+
+    @Override
+    public List<Collaborateur> tristreamdescription() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Collaborateur> rechstream(Collaborateur x) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
    
 

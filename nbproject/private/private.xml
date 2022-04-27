@@ -3,15 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Services/IService.java</file>
             <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Model/Evenement.java</file>
-            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLCollaborateurController.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLfontCollaborateur.fxml</file>
             <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLEvenement.fxml</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLFRONTEventController.java</file>
             <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Model/Collaborateur.java</file>
-            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/utils/MyDb.java</file>
-            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Services/ServiceEvenement.java</file>
             <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/NewFXMain.java</file>
             <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Services/ServiceCollaborateur.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Services/Sauvegarde.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Services/IService.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLCollaborateurController.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLfonttCollaborateurController.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/utils/MyDb.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/frontoffice.css</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/GamesStyle.css</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Services/ServiceEvenement.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/Services/Alerte.java</file>
+            <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLFRONTEvent.fxml</file>
             <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/workshope3a35/WorkShope3A35.java</file>
             <file>file:/C:/Users/Sarah/Desktop/WorkShope3A35/src/GUI/FXMLEvenementController.java</file>
         </group>

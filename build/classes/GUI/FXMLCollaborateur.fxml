@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLCollaborateurController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="ajouterC" layoutY="7.0" onDragDetected="#afficherCC" prefHeight="497.0" prefWidth="780.0">
+      <AnchorPane id="AnchorPane" fx:id="ajouterC" layoutX="-34.0" layoutY="2.0" onDragDetected="#afficherCC" prefHeight="497.0" prefWidth="780.0">
          <children>
             <TextField fx:id="NomC" layoutX="156.0" layoutY="67.0" prefHeight="25.0" prefWidth="103.0" />
             <TextField fx:id="Ent" layoutX="156.0" layoutY="195.0" prefHeight="25.0" prefWidth="103.0" />
@@ -39,6 +39,7 @@
             <Button fx:id="btnf" layoutX="510.0" layoutY="327.0" mnemonicParsing="false" onAction="#afficherCC" text="Formulaire" />
             <TextField fx:id="idin" layoutX="156.0" layoutY="39.0" prefHeight="25.0" prefWidth="103.0" visible="false" />
             <Button fx:id="btnar" layoutX="259.0" layoutY="385.0" mnemonicParsing="false" onAction="#archiverr" text="Archiver" />
+            <Button fx:id="btni" layoutX="514.0" layoutY="360.0" mnemonicParsing="false" onAction="#imprimer" text="imprimer" />
          </children>
       </AnchorPane>
    </children>

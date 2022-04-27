@@ -25,8 +25,8 @@ public class WorkShope3A35 {
         // TODO code application logic here
   //Collaborateur c1 = new Collaborateur("ben salah5555" , "salah","artist",12345,"mlk");
   //Collaborateur c2 = new Collaborateur("ben salah55444444444455" , "salah","artist",12345,"mlk");
-  Collaborateur c3 = new Collaborateur("ben dddddd" , "salahwc","artistss",12345,"mlxk");
-  Evenement c1 = new Evenement (1,"sss", "xwcxwx", 15, "xcwxc",10,"2022-02-03",1,1);
+ // Collaborateur c3 = new Collaborateur("ben dddddd" , "salahwc","artistss",12345,"mlxk");
+  //Evenement c1 = new Evenement (1,"sss", "xwcxwx", 15, "xcwxc",10,"2022-02-03",1,1);
    //Evenement c = new Evenement(8,1 , "art","arttt",14,"mlxk",10,2022-03-04,1.2,1.3);
   
   //Evenement c = new Evenement(1 , 1,"artistss","ken","kenP");
@@ -34,13 +34,13 @@ public class WorkShope3A35 {
  ServiceEvenement cc =  new ServiceEvenement();
   //sp.setId(20);
  // cc.ajouter(c1);
-    
+    sp.sms();
     // sp.modifier(c1, 16);
      //  sp.supprimer();
-        cc.afficher();
+      //  cc.afficher();
        // cc.eventjoin(8);
  // sp.rechercherCollaborateur(4);
-       System.out.println(cc.afficher().toString());
+     //  System.out.println(cc.afficher().toString());
      // System.out.println(cc.eventjoin(8));
     // sp.trierCollaborateur();
     }

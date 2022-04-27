@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -31,7 +32,7 @@
       <Button fx:id="btna" layoutX="702.0" layoutY="356.0" mnemonicParsing="false" onAction="#ajouterE" text="Ajouter" />
       <Button fx:id="btnm" layoutX="699.0" layoutY="385.0" mnemonicParsing="false" onAction="#modifierE" text="Modifier" />
       <Button fx:id="btnc" layoutX="693.0" layoutY="417.0" mnemonicParsing="false" onAction="#supprimerE" text="Supprimer" />
-      <TableView fx:id="tableEvent" layoutX="93.0" layoutY="14.0" prefHeight="200.0" prefWidth="677.0">
+      <TableView fx:id="tableEvent" layoutX="11.0" layoutY="14.0" prefHeight="200.0" prefWidth="759.0">
         <columns>
           <TableColumn fx:id="collaborateur1" prefWidth="75.0" text="collaborateur1" />
           <TableColumn fx:id="nomcol" prefWidth="75.0" text="NomDeEvenement" />
@@ -42,12 +43,16 @@
             <TableColumn fx:id="date" prefWidth="75.0" text="DateDeEvenement" />
             <TableColumn fx:id="longitude" prefWidth="75.0" text="Longitude" />
             <TableColumn fx:id="latitude" prefWidth="75.0" text="Latitude" />
+            <TableColumn fx:id="option" prefWidth="75.0" text="Options" />
         </columns>
       </TableView>
-      <Button layoutX="16.0" layoutY="189.0" mnemonicParsing="false" onAction="#afficher" text="Afficher" />
+      <Button layoutX="514.0" layoutY="356.0" mnemonicParsing="false" onAction="#afficher" text="Afficher" />
       <Button fx:id="reb" layoutX="691.0" layoutY="270.0" mnemonicParsing="false" text="Rechercher" />
-      <TextField fx:id="re" layoutX="514.0" layoutY="270.0" />
+      <TextField fx:id="tfrech" layoutX="514.0" layoutY="270.0" />
       <TextField fx:id="idin" layoutX="118.0" layoutY="228.0" prefHeight="25.0" prefWidth="103.0" visible="false" />
-      <Button fx:id="btnf" layoutX="8.0" layoutY="131.0" mnemonicParsing="false" onAction="#afficherEE" text="Formulaire" />
+      <Button fx:id="btnf" layoutX="334.0" layoutY="369.0" mnemonicParsing="false" onAction="#afficherEE" text="Formulaire" />
+      <Button fx:id="btnss" layoutX="599.0" layoutY="356.0" mnemonicParsing="false" onAction="#sauvegarde" text="Sauvegarde" />
+      <ComboBox fx:id="trinom" layoutX="514.0" layoutY="312.0" prefWidth="150.0" />
+      <ComboBox fx:id="cinuser" layoutX="118.0" layoutY="228.0" onAction="#afficher" prefHeight="25.0" prefWidth="103.0" />
    </children>
 </AnchorPane>
