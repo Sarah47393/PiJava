@@ -92,7 +92,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
      List<Emplois> Emploiss = new ArrayList();
         try {
        
-        String querry ="SELECT * FROM `Emplois` where arch is NULL ";
+        String querry ="SELECT * FROM `Emplois` where arch =0 ";
         Statement stm = cnx.createStatement();
             ResultSet rs= stm.executeQuery(querry);
         while (rs.next()){
@@ -278,7 +278,7 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
      List<String> ss = new ArrayList();
         try {
        
-        String querry ="SELECT * FROM `Emplois` where arch is NULL ";
+        String querry ="SELECT * FROM `Emplois` where arch =0 ";
         Statement stm = cnx.createStatement();
             ResultSet rs= stm.executeQuery(querry);
         while (rs.next()){

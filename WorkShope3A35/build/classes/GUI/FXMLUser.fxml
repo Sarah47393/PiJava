@@ -8,28 +8,59 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="1242.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLUserController">
    <children>
-      <Button layoutX="108.0" layoutY="470.0" mnemonicParsing="false" onAction="#modPersonnes1" text="Moddifier" />
-      <Button fx:id="ajout" layoutX="32.0" layoutY="470.0" mnemonicParsing="false" onAction="#ajouterPersonne" text="Ajouter" />
-      <Button fx:id="supp" layoutX="199.0" layoutY="470.0" mnemonicParsing="false" onAction="#supprimerPersonnes" text="supprimer" />
-      <Label layoutX="46.0" layoutY="67.0" text="nom" />
-      <Label layoutX="42.0" layoutY="103.0" text="prenom" />
-      <Label layoutX="27.0" layoutY="140.0" text="password" />
-      <Label layoutX="42.0" layoutY="177.0" text="cin" />
-      <Label layoutX="48.0" layoutY="215.0" text="role" />
+      <ImageView fitHeight="605.0" fitWidth="1245.0">
+         <image>
+            <Image url="@aa.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="108.0" layoutY="470.0" mnemonicParsing="false" onAction="#modPersonnes1" style="-fx-background-color: #A7C7E7;" text="Moddifier" />
+      <Button fx:id="ajout" layoutX="32.0" layoutY="470.0" mnemonicParsing="false" onAction="#ajouterPersonne" style="-fx-background-color: #A7C7E7;" text="Ajouter" />
+      <Button fx:id="supp" layoutX="1032.0" layoutY="458.0" mnemonicParsing="false" onAction="#emp" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="emplois" />
+      <Label layoutX="46.0" layoutY="67.0" text="nom" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="42.0" layoutY="103.0" text="prenom" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="27.0" layoutY="140.0" text="password" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="42.0" layoutY="177.0" text="cin" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="48.0" layoutY="215.0" text="role" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField id="tfnom" fx:id="tfnom" layoutX="87.0" layoutY="63.0" />
       <TextField id="tfprenom" fx:id="tfprenom" layoutX="87.0" layoutY="99.0" />
       <TextField id="tfpassword" fx:id="tfpassword" accessibleRole="PASSWORD_FIELD" layoutX="87.0" layoutY="136.0" />
       <TextField id="tfcin" fx:id="tfcin" layoutX="87.0" layoutY="173.0" />
       <TextField id="tfrole" fx:id="tfrole" layoutX="87.0" layoutY="211.0" />
       <DatePicker id="tfdate" fx:id="tfdate" layoutX="55.0" layoutY="326.0" />
-      <Label layoutX="43.0" layoutY="251.0" text="access" />
-      <Label layoutX="36.0" layoutY="293.0" text="image" />
-      <Label layoutX="15.0" layoutY="330.0" text="date" />
+      <Label layoutX="43.0" layoutY="251.0" text="access" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="36.0" layoutY="293.0" text="image" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="15.0" layoutY="330.0" text="date" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField id="tfaccess" fx:id="tfaccess" layoutX="87.0" layoutY="244.0" />
       <TableView id="tableuser" fx:id="tableuser" layoutX="514.0" layoutY="74.0" prefHeight="370.0" prefWidth="696.0">
         <columns>
@@ -44,18 +75,19 @@
           <TableColumn id="nomcol" fx:id="nomcol" prefWidth="75.0" text="nom" />
         </columns>
       </TableView>
-      <Button layoutX="38.0" layoutY="432.0" mnemonicParsing="false" onAction="#afficherPersonnes1" text="load" />
+      <Button layoutX="38.0" layoutY="432.0" mnemonicParsing="false" onAction="#afficherPersonnes1" style="-fx-background-color: #A7C7E7;" text="load" />
       <TextField id="tfimage" fx:id="tfimage" layoutX="84.0" layoutY="290.0" />
       <TextField id="tfid" fx:id="tfid" layoutX="84.0" layoutY="27.0" visible="false" />
-      <ImageView id="image" fx:id="Image" fitHeight="150.0" fitWidth="200.0" layoutX="277.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" />
-      <Button id="img" fx:id="img" layoutX="245.0" layoutY="289.0" mnemonicParsing="false" onAction="#image" text="image" />
+      <Button id="img" fx:id="img" layoutX="245.0" layoutY="289.0" mnemonicParsing="false" onAction="#image" style="-fx-background-color: #A7C7E7;" text="image" />
       <TextField id="tfrech" fx:id="tfrech" layoutX="515.0" layoutY="37.0" prefHeight="25.0" prefWidth="696.0" />
-      <Label fx:id="LBshow" layoutX="563.0" layoutY="522.0" text="Label" />
-      <Button id="trinom" fx:id="nomtri" layoutX="1117.0" layoutY="458.0" mnemonicParsing="false" onAction="#tri" text="Button" />
+      <Button id="trinom" fx:id="nomtri" layoutX="1117.0" layoutY="458.0" mnemonicParsing="false" onAction="#deco" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="se deconnecter" />
       <ComboBox id="trinom" fx:id="trinom" layoutX="1032.0" layoutY="495.0" prefWidth="150.0" />
-      <Button fx:id="arch" layoutX="302.0" layoutY="470.0" mnemonicParsing="false" onAction="#archPersonnes1" text="archiver" />
+      <Button fx:id="arch" layoutX="216.0" layoutY="471.0" mnemonicParsing="false" onAction="#archPersonnes1" style="-fx-background-color: #A7C7E7;" text="archiver" />
       <ListView fx:id="listuser" layoutX="510.0" layoutY="74.0" prefHeight="370.0" prefWidth="704.0" />
-      <Label layoutX="45.0" layoutY="33.0" text="email" />
+      <Label layoutX="45.0" layoutY="33.0" text="email" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <TextField fx:id="tfemail" layoutX="87.0" layoutY="29.0" onAction="#tfemail" />
    </children>
 </AnchorPane>

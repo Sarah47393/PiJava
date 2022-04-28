@@ -59,9 +59,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
 import javafx.util.converter.IntegerStringConverter;
 import javax.swing.JFileChooser;
@@ -73,7 +78,7 @@ import javax.swing.JFileChooser;
  */
 
 public class FXMLUserController implements Initializable {
-   
+  
     @FXML
     private TextField tfnom;
      @FXML
@@ -507,5 +512,24 @@ catch(Exception e){}
 
     @FXML
     private void tfemail(ActionEvent event) {
+    }
+    @FXML
+    private void deco(ActionEvent event)throws IOException {
+             User aa=new User(); 
+       aa.setMyVariable(aa);
+      Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+     @FXML
+    private void emp(ActionEvent event)throws IOException {
+            
+      Parent root = FXMLLoader.load(getClass().getResource("FXMLEmplois.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 }

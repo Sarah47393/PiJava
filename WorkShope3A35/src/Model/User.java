@@ -56,7 +56,15 @@ public class User {
         this.image = image;
         this.email=email;
     }
-
+ public User( String email, String nom, String prenom, String datenaissance,int cin) {
+        
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.datenaissance = datenaissance;
+       
+        this.email=email;
+    }
     public User(int cin, int password) {
        
          this.cin = cin;
@@ -189,6 +197,13 @@ public class User {
     }
 
    
-    
+             private static User myVariable;
+public User getMyVariable() {
+    return myVariable;
+}
+
+public void setMyVariable(User myVariable) {
+    this.myVariable = myVariable;
+}
     
 }

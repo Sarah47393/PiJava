@@ -302,5 +302,61 @@ private Connection cnx = MyDb.getInstance().getCnx() ;
     return t.getRole();
     
          }
+           public User existe2(User t){
+          List<User> Users = afficher().stream().filter(p->(p.getEmail().equals(t.getEmail()))&&(String.valueOf(p.getPassword()).equals(String.valueOf(t.getPassword())))).collect(Collectors.toList());
+          System.out.println(Users);
+   User aa=new User();
+    if (Users.isEmpty()){
+          
+
+    return null;}
+    else{ 
+        
+        aa=Users.get(0);
+       // t.setRole(Users.get(0).getRole());}
+    return aa;
+    
+         }}
+              public boolean existeemail(String t){
+          List<User> Users = afficher().stream().filter(p->(p.getEmail().equals(t))).collect(Collectors.toList());
+          System.out.println(Users);
+ 
+    if (Users.isEmpty()){
+          
+
+    return false;}
+    else{ 
+        
+       
+    return true;
+    
+         }}
+               public boolean existemdp(User t){
+          List<User> Users = afficher().stream().filter(p->(p.getEmail().equals(t.getEmail()))&&(String.valueOf(p.getCin()).equals(String.valueOf(t.getCin())))&&(p.getDatenaissance().equals(t.getDatenaissance()))&&(p.getNom().equals(t.getNom()))&&(p.getPrenom().equals(t.getPrenom()))).collect(Collectors.toList());
+          System.out.println(Users);
+ 
+    if (Users.isEmpty()){
+          
+
+    return false;}
+    else{ 
+        
+       
+    return true;
+    
+         }}
+ public void modpass(User t) {
+         try {
+            String req = "update User set password =? where email= ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            
+            ps.setInt(1, t.getPassword());
+            ps.setString(2, t.getEmail());
+            ps.executeUpdate();
+            System.out.println("User modifiée");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       }
 }
 

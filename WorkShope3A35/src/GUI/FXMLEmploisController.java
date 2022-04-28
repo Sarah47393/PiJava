@@ -9,6 +9,7 @@ import Model.User;
 import Services.ServiceUser;
 import Model.Emplois;
 import Services.ServiceEmplois;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -18,7 +19,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,6 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -39,19 +45,7 @@ import javafx.scene.image.Image;
  */
 public class FXMLEmploisController implements Initializable {
 
-    @FXML
-    private TableView<Emplois> tableemplois;
-
-    @FXML
-    private TableColumn<Emplois, String> nomcol;
-    @FXML
-    private TableColumn<Emplois, String> prenomcol;
-    @FXML
-    private TableColumn<Emplois, String> cincol;
-    @FXML
-    private TableColumn<Emplois, String> ddbut;
-    @FXML
-    private TableColumn<Emplois, String> dfin;
+   
     @FXML
     private TextField recheerche;
     @FXML
@@ -76,6 +70,12 @@ public class FXMLEmploisController implements Initializable {
     private ComboBox<User> cinuser;
     @FXML
     private Button archiver;
+    @FXML
+    private ListView<Emplois> listemplois;
+    @FXML
+    private Button usss;
+    @FXML
+    private Button decooo;
  
 
     /**
@@ -86,7 +86,9 @@ public class FXMLEmploisController implements Initializable {
         // TODO
           ServiceEmplois sp = new ServiceEmplois();
          ServiceUser sp7 = new ServiceUser();
-  
+   ObservableList<Emplois> items =FXCollections.observableArrayList (
+                sp.afficher());
+        listemplois.setItems(items);
 ObservableList<User> list22 = FXCollections.observableArrayList(sp7.affichercombo());
 //cinuser.add(list22.get(0));
 cinuser.setItems(list22);
@@ -111,7 +113,7 @@ cinuser.setItems(list22);
 
 
     
-        nomcol.setCellValueFactory(new PropertyValueFactory<Emplois, String>("nom"));
+      /*  nomcol.setCellValueFactory(new PropertyValueFactory<Emplois, String>("nom"));
               nomcol.setCellFactory(TextFieldTableCell.<Emplois> forTableColumn());
 prenomcol.setCellValueFactory(new PropertyValueFactory<Emplois, String>("prenom"));
  prenomcol.setCellFactory(TextFieldTableCell.<Emplois> forTableColumn());
@@ -162,10 +164,10 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
             Emplois person = event.getTableView().getItems().get(row);
             person.setDfin(newFullName);
             sp.modifier(person);
-        });
-    ObservableList<Emplois> list = FXCollections.observableArrayList(sp.afficher());
+        });*/
+  //  ObservableList<Emplois> list = FXCollections.observableArrayList(sp.afficher());
 //ImageView imagecol=new ImageView(new image(this.getClass().getResourceAsStream(url1)));
-    tableemplois.setItems(list);
+  //  tableemplois.setItems(list);
     recheerche.textProperty().addListener((observable, oldValue, newValue) -> {
            ServiceEmplois sp1 = new ServiceEmplois();
            Emplois u1 =new Emplois();
@@ -183,10 +185,10 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
          }
    catch(Exception e){}
        // LBshow.setText(nom);
-          ObservableList<Emplois> list1 = FXCollections.observableArrayList(sp1.rechstream(u1));
+          ObservableList<Emplois> list1 = FXCollections.observableArrayList(sp.rechstream(u1));
 
-    tableemplois.setItems(list1);
-    if(recheerche.getText().trim().isEmpty()){    tableemplois.setItems(list);}
+    listemplois.setItems(list1);
+    if(recheerche.getText().trim().isEmpty()){    listemplois.setItems(items);}
    ;
 });
       tri.getItems().setAll("nom", "prenom", "debut","fin");
@@ -198,13 +200,13 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
     tri.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
       @Override public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
      if(newFruit=="nom"){  ObservableList<Emplois> list2 = FXCollections.observableArrayList(sp.tristreamnom());
-       tableemplois.setItems(list2);}
+       listemplois.setItems(list2);}
      if(newFruit=="prenom"){  ObservableList<Emplois> list2 = FXCollections.observableArrayList(sp.tristreamprenom());
-       tableemplois.setItems(list2);}
+       listemplois.setItems(list2);}
      if(newFruit=="debut"){  ObservableList<Emplois> list2 = FXCollections.observableArrayList(sp.tristreamdated());
-       tableemplois.setItems(list2);}
+       listemplois.setItems(list2);}
      if(newFruit=="fin"){  ObservableList<Emplois> list2 = FXCollections.observableArrayList(sp.tristreamdatef());
-       tableemplois.setItems(list2);}
+       listemplois.setItems(list2);}
     }  });  } 
     @FXML
         private void ajouteremplois(ActionEvent event) {
@@ -226,7 +228,7 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
         sp.ajouter(new Emplois(cin2,debut.getText(),fin.getText()));
           ObservableList<Emplois> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableemplois.setItems(list);
+    listemplois.setItems(list);
     }
      @FXML
     private void afficherPersonnes1(ActionEvent event) {
@@ -236,7 +238,7 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
      ServiceEmplois sp = new ServiceEmplois();
             
       
-  Emplois person = tableemplois.getSelectionModel().getSelectedItem();
+  Emplois person = listemplois.getSelectionModel().getSelectedItem();
    
    
   String idd=String.valueOf(person.getId());
@@ -250,7 +252,7 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
     private void modPersonnes1(ActionEvent event) {
      ServiceEmplois sp = new ServiceEmplois();
                
-  Emplois person = tableemplois.getSelectionModel().getSelectedItem();
+  Emplois person = listemplois.getSelectionModel().getSelectedItem();
    int idd = Integer.parseInt(idddd.getText());
  person.setId(idd);
        person.setDdebut(debut.getText());
@@ -259,14 +261,14 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
        sp.modifier(person);
         ObservableList<Emplois> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableemplois.setItems(list);
+    listemplois.setItems(list);
   //LBshow.setText("aa");
     }
      @FXML
     private void archPersonnes1(ActionEvent event) {
      ServiceEmplois sp = new ServiceEmplois();
                
-  Emplois person = tableemplois.getSelectionModel().getSelectedItem();
+  Emplois person = listemplois.getSelectionModel().getSelectedItem();
   // int idd = Integer.parseInt(idddd.getText());
 //person.setId(idd);
       
@@ -274,7 +276,26 @@ ddbut.setCellValueFactory(new PropertyValueFactory<Emplois, String>("ddebut"));
        sp.arch(person);
         ObservableList<Emplois> list = FXCollections.observableArrayList(sp.afficher());
 
-    tableemplois.setItems(list);
+    listemplois.setItems(list);
   //LBshow.setText("aa");
+    }
+    @FXML
+    private void deco(ActionEvent event)throws IOException {
+             User aa=new User(); 
+       aa.setMyVariable(aa);
+      Parent root = FXMLLoader.load(getClass().getResource("FXMLLogin.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+     @FXML
+       private void usse(ActionEvent event)throws IOException {
+            
+      Parent root = FXMLLoader.load(getClass().getResource("FXMLUser.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
     }
 }

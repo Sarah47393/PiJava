@@ -26,6 +26,7 @@ import GUI.FXMLUserController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.PasswordField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import workshope3a35.WorkShope3A35;
@@ -39,13 +40,18 @@ public class FXMLLoginController implements Initializable {
 
     @FXML
     private TextField tflogin;
-    @FXML
-    private TextField tfpassword;
+   
     @FXML
     private Button btnlogin;
     @FXML
     private WebView capt;
 private String s="";
+    @FXML
+    private PasswordField passfield;
+    @FXML
+    private Button newnew;
+    @FXML
+    private Button mdpoub;
     /**
      * Initializes the controller class.
      */
@@ -85,21 +91,21 @@ private String s="";
          ServiceUser sp = new ServiceUser();
       
         String log=tflogin.getText();
-        String pass=tfpassword.getText();
+        String pass=passfield.getText();
          if(tflogin.getText().isEmpty()){
                Alert alert = new Alert(Alert.AlertType.ERROR);
                          alert.setTitle("Veuillez remplir tous les champs");
                          alert.setContentText("Veuillez remplir tous les champs");
                          alert.show();
          }
-            else if(tfpassword.getText().isEmpty()){
+            else if(passfield.getText().isEmpty()){
                Alert alert = new Alert(Alert.AlertType.ERROR);
                          alert.setTitle("Veuillez remplir tous les champs");
                          alert.setContentText("Veuillez remplir tous les champs");
                          alert.show();
          }
             else{
-         User usc = new User(tflogin.getText(),Integer.parseInt(tfpassword.getText()));
+         User usc = new User(tflogin.getText(),Integer.parseInt(passfield.getText()));
           System.out.println(usc.getEmail()); 
             
           if(!(s.equals("55"))){
@@ -115,7 +121,11 @@ private String s="";
                          alert.show();
          }
         else if((s.equals("55"))&&(sp.existe(usc).contains("Admin"))){
-           
+             User a=usc;
+     
+        System.out.println(a);
+        System.out.println(sp.existe(a));
+        a.setMyVariable(sp.existe2(a));
              Parent root = FXMLLoader.load(getClass().getResource("FXMLUser.fxml"));
               Scene scene = new Scene(root);
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -126,7 +136,12 @@ private String s="";
             
        }
           else if(((s.equals("55"))&&sp.existe(usc).contains("Membre"))){
-             Parent root = FXMLLoader.load(getClass().getResource("FXMLEmplois.fxml"));
+               User a=usc;
+     
+        System.out.println(a);
+        System.out.println(sp.existe(a));
+        a.setMyVariable(sp.existe2(a));
+             Parent root = FXMLLoader.load(getClass().getResource("FXMLUserfront.fxml"));
               Scene scene = new Scene(root);
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.setScene(scene);
@@ -150,4 +165,46 @@ private String s="";
         Stage window = (Stage) connectLog.getScene().getWindow();
         window.setScene(new Scene(root, 800, 800));*/
     }
+     @FXML
+    private void newnew(ActionEvent event)throws IOException {
+           
+      Parent root = FXMLLoader.load(getClass().getResource("FXMLUsernew.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+     @FXML
+       private void mdpoub(ActionEvent event)throws IOException {
+             ServiceUser sp = new ServiceUser();
+      
+        String log=tflogin.getText();
+     
+         if(tflogin.getText().isEmpty()){
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("Veuillezentrer votre address");
+                         alert.setContentText("Veuillezentrer votre address");
+                         alert.show();
+         }
+           
+            else{
+         User usc = new User(tflogin.getText(),00);
+         if(!sp.existeemail(tflogin.getText())){ Alert alert = new Alert(Alert.AlertType.ERROR);
+                         alert.setTitle("address invalide");
+                         alert.setContentText("address invalide");
+                         alert.show();}
+         else{
+              User a=usc;
+     
+       // System.out.println(a);
+       // System.out.println(sp.existe(a));
+        a.setMyVariable(a);
+        System.out.println(a.getMyVariable());
+      Parent root = FXMLLoader.load(getClass().getResource("FXMLMdpoub.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();}
+    }}
+   
 }
