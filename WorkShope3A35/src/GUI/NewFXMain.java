@@ -26,6 +26,7 @@ import javafx.stage.Stage;
  */
 public class NewFXMain extends Application {
       public User user1 = new User();
+      public static String sup;
     @Override
     public void start(Stage primaryStage) {
       

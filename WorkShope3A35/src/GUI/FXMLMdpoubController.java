@@ -33,14 +33,10 @@ public class FXMLMdpoubController implements Initializable {
 
     @FXML
     private Button ajout;
-    @FXML
-    private TextField tfnom;
-    @FXML
-    private TextField tfprenom;
+ 
     @FXML
     private TextField tfcin;
-    @FXML
-    private DatePicker tfdate;
+   
     @FXML
     private Button nomtri;
     @FXML
@@ -67,13 +63,10 @@ public class FXMLMdpoubController implements Initializable {
 ServiceUser sp = new ServiceUser();
 User a=new User();
 String email=a.getMyVariable().getEmail();
-String nom=tfnom.getText();
-String prenom=tfprenom.getText();
-int cin = Integer.parseInt(tfcin.getText());
-String date=tfdate.getValue().toString();
-User usc=new User(email,nom,prenom,date,cin);
+
+User usc=new User(email,"nom","prenom","date",15);
 usc.setMyVariable(usc);
-if(sp.existemdp(usc)){
+if(tfcin.getText().equals(NewFXMain.sup)){
     mdp1.setVisible(true);
 mdp2.setVisible(true);
  champ1.setVisible(true);

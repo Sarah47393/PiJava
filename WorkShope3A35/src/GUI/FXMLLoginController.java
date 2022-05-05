@@ -30,6 +30,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import workshope3a35.WorkShope3A35;
+import Model.Utils;
 
 /**
  * FXML Controller class
@@ -52,6 +53,7 @@ private String s="";
     private Button newnew;
     @FXML
     private Button mdpoub;
+    
     /**
      * Initializes the controller class.
      */
@@ -60,6 +62,7 @@ private String s="";
         // TODO
         WebEngine engine=capt.getEngine();
         engine.load("http://localhost/html.html");
+      // engine.load("https://google.com");
          //engine.setOnAlert(event -> showAlert(event.getData()));
        // engine.setConfirmHandler(message -> showConfirm(message));
           engine.setOnAlert(event -> s=(event.getData()));
@@ -200,11 +203,30 @@ private String s="";
        // System.out.println(sp.existe(a));
         a.setMyVariable(a);
         System.out.println(a.getMyVariable());
+           int max=9999;
+        int min=1111;
+              int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+     // System.out.println(random_int);
+        // System.out.println(NewFXMain.sup); 
+         NewFXMain.sup=String.valueOf(random_int);
+          Utils.sendMail("eddiezar69@outlook.com", NewFXMain.sup);
       Parent root = FXMLLoader.load(getClass().getResource("FXMLMdpoub.fxml"));
               Scene scene = new Scene(root);
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.setScene(scene);
               stage.show();}
     }}
+
+    @FXML
+    private void maill(ActionEvent event) {
+       
+        int max=9999;
+        int min=1111;
+              int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+     // System.out.println(random_int);
+        // System.out.println(NewFXMain.sup); 
+         NewFXMain.sup=String.valueOf(random_int);
+          Utils.sendMail("eddiezar69@outlook.com", NewFXMain.sup);
+    }
    
 }
