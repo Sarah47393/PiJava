@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="1242.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLUserController">
+   <children>
+      <ImageView fitHeight="632.0" fitWidth="1322.0" layoutY="-27.0">
+         <image>
+            <Image url="@aa.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="108.0" layoutY="470.0" mnemonicParsing="false" onAction="#modPersonnes1" style="-fx-background-color: #A7C7E7;" text="Moddifier" />
+      <Button fx:id="ajout" layoutX="32.0" layoutY="470.0" mnemonicParsing="false" onAction="#ajouterPersonne" style="-fx-background-color: #A7C7E7;" text="Ajouter" />
+      <Button fx:id="supp" layoutX="1032.0" layoutY="458.0" mnemonicParsing="false" onAction="#emp" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="emplois" />
+      <Label layoutX="46.0" layoutY="67.0" text="nom" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="42.0" layoutY="103.0" text="prenom" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="27.0" layoutY="140.0" text="password" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="42.0" layoutY="177.0" text="cin" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="48.0" layoutY="215.0" text="role" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TextField id="tfnom" fx:id="tfnom" layoutX="87.0" layoutY="63.0" />
+      <TextField id="tfprenom" fx:id="tfprenom" layoutX="87.0" layoutY="99.0" />
+      <TextField id="tfpassword" fx:id="tfpassword" accessibleRole="PASSWORD_FIELD" layoutX="87.0" layoutY="136.0" />
+      <TextField id="tfcin" fx:id="tfcin" layoutX="87.0" layoutY="173.0" />
+      <TextField id="tfrole" fx:id="tfrole" layoutX="87.0" layoutY="211.0" />
+      <DatePicker id="tfdate" fx:id="tfdate" layoutX="55.0" layoutY="326.0" />
+      <Label layoutX="43.0" layoutY="251.0" text="access" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="36.0" layoutY="293.0" text="image" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="15.0" layoutY="330.0" text="date" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TextField id="tfaccess" fx:id="tfaccess" layoutX="87.0" layoutY="244.0" />
+      <TextField id="tfimage" fx:id="tfimage" layoutX="84.0" layoutY="290.0" />
+      <TextField id="tfid" fx:id="tfid" layoutX="84.0" layoutY="27.0" visible="false" />
+      <Button id="img" fx:id="img" layoutX="245.0" layoutY="289.0" mnemonicParsing="false" onAction="#image" style="-fx-background-color: #A7C7E7;" text="image" />
+      <TextField id="tfrech" fx:id="tfrech" layoutX="612.0" layoutY="40.0" prefHeight="25.0" prefWidth="696.0" />
+      <Button id="trinom" fx:id="nomtri" layoutX="1099.0" layoutY="459.0" mnemonicParsing="false" onAction="#deco" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="se deconnecter" />
+      <ComboBox id="trinom" fx:id="trinom" layoutX="1032.0" layoutY="495.0" prefWidth="150.0" />
+      <Button fx:id="arch" layoutX="216.0" layoutY="471.0" mnemonicParsing="false" onAction="#archPersonnes1" style="-fx-background-color: #A7C7E7;" text="archiver" />
+      <Label layoutX="45.0" layoutY="33.0" text="email" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TextField fx:id="tfemail" layoutX="87.0" layoutY="29.0" onAction="#tfemail" />
+      <ScrollPane fx:id="scroll" layoutX="604.0" layoutY="83.0" prefHeight="370.0" prefWidth="704.0" styleClass="transparent" stylesheets="@../values/style.css">
+         <content>
+            <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <VBox fx:id="chosenFruitCard1" alignment="CENTER" layoutX="301.0" layoutY="16.0" prefHeight="572.0" prefWidth="300.0" style="-fx-background-color: #A7C7E7;" stylesheets="@../values/style.css">
+         <children>
+            <HBox prefHeight="60.0" prefWidth="335.0">
+               <children>
+                  <Label fx:id="fruitNameLable1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="300.0" text="Peach" textFill="WHITE">
+                     <font>
+                        <Font name="Cambria" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="fruitPriceLabel7" prefHeight="44.0" prefWidth="282.0" text="\$2.99" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="fruitImg1" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/peach.png" />
+               </image>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="fruitPriceLabel1" prefHeight="44.0" prefWidth="282.0" text="\$2.99" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="fruitPriceLabel2" prefHeight="44.0" prefWidth="282.0" text="\$2.99" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="fruitPriceLabel3" prefHeight="44.0" prefWidth="282.0" text="\$2.99" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="fruitPriceLabel4" prefHeight="44.0" prefWidth="282.0" text="\$2.99" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="fruitPriceLabel5" prefHeight="44.0" prefWidth="282.0" text="\$2.99" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="fruitPriceLabel6" prefHeight="44.0" prefWidth="282.0" text="\$2.99" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="36.0" />
+               </font>
+            </Label>
+         </children>
+         <styleClass>
+            <String fx:value="chosen-fruit-card" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </VBox>
+      <Button id="trinom" layoutX="1204.0" layoutY="458.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="retour" />
+   </children>
+</AnchorPane>

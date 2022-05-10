@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="648.0" prefWidth="1302.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLViewbackController">
+   <children>
+      <ImageView fitHeight="656.0" fitWidth="1304.0" layoutY="-4.0">
+         <image>
+            <Image url="@ss.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="464.0" layoutY="117.0" mnemonicParsing="false" onAction="#userback" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="user" />
+      <Button layoutX="464.0" layoutY="211.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="login" />
+      <Button layoutX="464.0" layoutY="163.0" mnemonicParsing="false" onAction="#emploisback" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="emplois" />
+      <Button layoutX="464.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="login" />
+      <Button layoutX="464.0" layoutY="301.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="login" />
+      <Button layoutX="464.0" layoutY="344.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="login" />
+      <Button layoutX="464.0" layoutY="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="login" />
+      <Button layoutX="861.0" layoutY="594.0" mnemonicParsing="false" onAction="#deco" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #A7C7E7; -fx-border-radius: 18px;" text="deconexion" />
+   </children>
+</AnchorPane>
