@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservationvisite.gui.FXMLvisiteController">
+   <children>
+      <ImageView fitHeight="593.0" fitWidth="959.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/visite_immobilier_460-tt-width-460-height-260-fill-0-crop-0-bgcolor-eeeeee.png" />
+         </image>
+      </ImageView>
+      <DatePicker fx:id="dpdate" layoutX="703.0" layoutY="104.0" opacity="0.91" promptText="Date" style="-fx-background-radius: 10;" />
+      <TextField fx:id="tfdescription" layoutX="725.0" layoutY="188.0" opacity="0.91" promptText="Description" style="-fx-background-radius: 10;" />
+      <TextField fx:id="tfnumcarte" layoutX="725.0" layoutY="268.0" opacity="0.91" promptText="Num carte" style="-fx-background-radius: 10;" />
+      <TextField fx:id="tfmontant" layoutX="725.0" layoutY="339.0" opacity="0.91" promptText="Montant" style="-fx-background-radius: 10;" />
+      <RadioButton fx:id="rbhomme" layoutX="716.0" layoutY="422.0" mnemonicParsing="false" opacity="0.91" text="Homme">
+         <toggleGroup>
+            <ToggleGroup fx:id="g1" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rbfemme" layoutX="815.0" layoutY="422.0" mnemonicParsing="false" opacity="0.91" text="Femme" toggleGroup="$g1" />
+      <Button layoutX="651.0" layoutY="499.0" mnemonicParsing="false" onAction="#ajouter" opacity="0.91" style="-fx-background-radius: 20; -fx-background-color: #5d62f5;" text="Ajouter" textFill="#fff9f9">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="747.0" layoutY="499.0" mnemonicParsing="false" onAction="#modifier" opacity="0.91" style="-fx-background-radius: 20; -fx-background-color: #5d62f5;" text="Modifier" textFill="#fff9f9">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="836.0" layoutY="499.0" mnemonicParsing="false" onAction="#supprimer" opacity="0.91" style="-fx-background-radius: 20; -fx-background-color: #5d62f5;" text="Supprimer" textFill="#fff9f9">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="860.0" layoutY="21.0" mnemonicParsing="false" onAction="#logout" opacity="0.91" style="-fx-background-radius: 20; -fx-background-color: #f55d67;" text="Logout">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <TextField fx:id="tfrecherche" layoutX="169.0" layoutY="56.0" opacity="0.91" promptText="Recherche" style="-fx-background-radius: 10;" />
+      <Button layoutX="536.0" layoutY="56.0" mnemonicParsing="false" onAction="#pdf" opacity="0.91" style="-fx-background-radius: 20; -fx-background-color: #fffec9;" text="EXCEL">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="441.0" layoutY="56.0" mnemonicParsing="false" onAction="#tri" opacity="0.91" style="-fx-background-radius: 20; -fx-background-color: #fffec9;" text="Tri">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ScrollPane layoutX="5.0" layoutY="101.0" prefHeight="426.0" prefWidth="640.0">
+         <content>
+            <GridPane fx:id="grid">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Label fx:id="idgetter" layoutX="711.0" layoutY="44.0" />
+   </children>
+</AnchorPane>

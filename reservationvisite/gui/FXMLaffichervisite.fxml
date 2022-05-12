@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="anchore" onMouseClicked="#selectedvisite" prefHeight="284.0" prefWidth="298.0" style="-fx-background-color: #222831; -fx-border-color: #121212; -fx-background-radius: 5; -fx-border-width: 3; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservationvisite.gui.FXMLaffichervisiteController">
+   <children>
+      <Text fill="WHITE" layoutX="14.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+      <Text fill="WHITE" layoutX="174.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+      <Text fill="WHITE" layoutX="13.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Num carte" />
+      <Text fill="WHITE" layoutX="173.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe" />
+      <Text fill="WHITE" layoutX="12.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Montant" />
+      <Label fx:id="ldate" layoutX="54.0" layoutY="42.0" textFill="WHITE" />
+      <Label fx:id="lsexe" layoutX="209.0" layoutY="118.0" textFill="WHITE" />
+      <Label fx:id="lnumcarte" layoutX="78.0" layoutY="118.0" textFill="WHITE" />
+      <Label fx:id="lmontant" layoutX="68.0" layoutY="198.0" textFill="WHITE" />
+      <Label fx:id="ldescription" layoutX="241.0" layoutY="42.0" textFill="WHITE" />
+   </children>
+</AnchorPane>
