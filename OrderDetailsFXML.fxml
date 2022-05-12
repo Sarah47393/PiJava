@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="452.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrderDetailsFXMLController">
+   <children>
+      <TableView fx:id="orderDetailsTableView" layoutX="14.0" layoutY="14.0" prefHeight="364.0" prefWidth="419.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="#" />
+          <TableColumn fx:id="idProductColumn" prefWidth="106.0" text="id Product" />
+            <TableColumn fx:id="idOrderColumn" prefWidth="87.0" text="id Order" />
+            <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
+            <TableColumn fx:id="totalColumn" prefWidth="75.0" text="Total" />
+        </columns>
+      </TableView>
+      <WebView fx:id="mapwebview" layoutX="463.0" layoutY="26.0" prefHeight="200.0" prefWidth="212.0" />
+      <ImageView fx:id="QrCode" fitHeight="150.0" fitWidth="200.0" layoutX="475.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
